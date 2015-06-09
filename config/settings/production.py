@@ -92,12 +92,12 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 # EMAIL
 # ------------------------------------------------------------------------------
 DEFAULT_FROM_EMAIL = env('DJANGO_DEFAULT_FROM_EMAIL',
-                         default='wiki.allatra.club <noreply@wiki.allatra.club>')
+                         default='wiki_allatra_club <noreply@wiki_allatra_club>')
 EMAIL_HOST = env("DJANGO_EMAIL_HOST", default='smtp.sendgrid.com')
 EMAIL_HOST_PASSWORD = env("SENDGRID_PASSWORD")
 EMAIL_HOST_USER = env('SENDGRID_USERNAME')
-EMAIL_PORT = env.int("EMAIL_PORT", default=587)
-EMAIL_SUBJECT_PREFIX = env("EMAIL_SUBJECT_PREFIX", default='[wiki.allatra.club] ')
+EMAIL_PORT = env("EMAIL_PORT", default=587)
+EMAIL_SUBJECT_PREFIX = env("EMAIL_SUBJECT_PREFIX", default='[wiki_allatra_club] ')
 EMAIL_USE_TLS = True
 SERVER_EMAIL = EMAIL_HOST_USER
 
@@ -114,7 +114,7 @@ TEMPLATES[0]['OPTIONS']['loaders'] = [
 # DATABASE CONFIGURATION
 # ------------------------------------------------------------------------------
 # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
-DATABASES['default'] = env.db("DATABASE_URL")
+DATABASES['default'] = env("DATABASE_URL")
 
 # CACHING
 # ------------------------------------------------------------------------------
@@ -126,7 +126,7 @@ try:
     CACHES = memcacheify()
 except ImportError:
     CACHES = {
-        'default': env.cache_url("DJANGO_CACHE_URL", default="memcache://127.0.0.1:11211"),
+        'default': env("DJANGO_CACHE_URL", default="memcache://127.0.0.1:11211"),
     }
 
 # Your production stuff: Below this line define 3rd party library settings

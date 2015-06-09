@@ -1,5 +1,5 @@
 """
-WSGI config for wiki.allatra.club project.
+WSGI config for wiki_allatra_club project.
 
 This module contains the WSGI application used by Django's development server
 and any production WSGI deployments. It should expose a module-level variable

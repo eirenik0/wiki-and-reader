@@ -5,7 +5,7 @@ django==1.8.2
 django-environ==0.3.0
 django-secure==1.0.1
 whitenoise==1.0.6
-
+dj-database-url==0.3.0.
 
 # Forms
 django-braces==1.8.0
@@ -23,7 +23,7 @@ Pillow==2.8.1
 django-allauth==0.20.0
 
 # For the persistence stores
-psycopg2==2.6
+mysqlclient==1.3.6
 
 # Unicode slugification
 unicode-slugify==0.1.3
@@ -32,4 +32,16 @@ django-autoslug==1.8.0
 # Time zones support
 pytz==2015.4
 
-# Your custom requirements go here
+# Django Wiki app
+git+https://github.com/Infernion/django-wiki.git@dev
+django-celery
+django-taggit
+
+# App for hide links in wiki
+django-robots
+
+# API (search app)
+epubsearcher
+djangorestframework
+django-filter
+

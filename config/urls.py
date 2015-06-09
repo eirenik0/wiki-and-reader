@@ -7,21 +7,36 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
 
+from wiki.urls import get_pattern as get_wiki_pattern
+from django_nyt.urls import get_pattern as get_nyt_pattern
+
+from wiki_allatra_club.reader.views import ReaderView
+
+
 urlpatterns = [
-    url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name="home"),
-    url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name="about"),
+    url(r'^$',  # noqa
+        TemplateView.as_view(template_name='pages/index.html'),
+        name="index"),
+    url(r'^reader/(?P<pk>[0-9]+)/', ReaderView.as_view(),name="reader"),
+
+    url(r'^api/', include('wiki_allatra_club.api.urls', namespace='api')),
 
     # Django Admin
     url(r'^admin/', include(admin.site.urls)),
 
     # User management
-    url(r'^users/', include("wiki.allatra.club.users.urls", namespace="users")),
+    url(r'^users/', include("wiki_allatra_club.users.urls", namespace="users")),
     url(r'^accounts/', include('allauth.urls')),
 
-    # Your stuff: custom urls includes go here
+    # Django-wiki url patterns
+    url(r'^notifications/', get_nyt_pattern()),
+    url(r'^wiki/', get_wiki_pattern()),
 
+    url(r'^i18n/', include('django.conf.urls.i18n')),
+    url(r'^robots\.txt$', include('robots.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 
 if settings.DEBUG:
     # This allows the error pages to be debugged during development, just visit

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Django settings for wiki.allatra.club project.
+Django settings for wiki_allatra_club project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/dev/topics/settings/
@@ -9,13 +9,19 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/dev/ref/settings/
 """
 from __future__ import absolute_import, unicode_literals
+from django.utils.translation import ugettext_lazy as _
+
+import djcelery
+djcelery.setup_loader()
+BROKER_URL = 'django://' # configures Celery to use its Django broker.
 
 import environ
 
 ROOT_DIR = environ.Path(__file__) - 3  # (/a/b/myfile.py - 3 = /)
-APPS_DIR = ROOT_DIR.path('wiki.allatra.club')
+APPS_DIR = ROOT_DIR.path('wiki_allatra_club')
 
 env = environ.Env()
+env.read_env(str(ROOT_DIR('config/.env')))
 
 # APP CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -29,7 +35,7 @@ DJANGO_APPS = (
     'django.contrib.staticfiles',
 
     # Useful template tags:
-    # 'django.contrib.humanize',
+    'django.contrib.humanize',
 
     # Admin
     'django.contrib.admin',
@@ -39,12 +45,32 @@ THIRD_PARTY_APPS = (
     'allauth',  # registration
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
+
+    'django_nyt',   # django-wiki
+    'mptt',     # django-wiki
+    'sekizai',  # django-wiki
+    'sorl.thumbnail',   # django-wiki
+    'taggit',   # django-wiki
+    'taggit_autosuggest',   # django-wiki
+    'wiki', # django-wiki
+    'wiki.plugins.attachments', # django-wiki
+    'wiki.plugins.annotations', # django-wiki
+    'wiki.plugins.notifications',   # django-wiki
+    'wiki.plugins.images',  # django-wiki
+    'wiki.plugins.macros',  # django-wiki
+    'wiki.plugins.help',    # django-wiki
+    'wiki.plugins.links',   # django-wiki
+    'djcelery', # django-wiki
+    'kombu.transport.django',   # django-wiki
+    'rest_framework',   # reader
+    'robots',
 )
 
 # Apps specific for this project go here.
 LOCAL_APPS = (
-    'wiki.allatra.club.users',  # custom users app
-    # Your stuff: custom apps go here
+    'wiki_allatra_club.users',  # custom users app
+    'wiki_allatra_club.reader',   # serve epub.js
+    'wiki_allatra_club.api',  # communicate with epub.js
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -55,6 +81,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 MIDDLEWARE_CLASSES = (
     # Make sure djangosecure.middleware.SecurityMiddleware is listed first
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -65,7 +92,7 @@ MIDDLEWARE_CLASSES = (
 # MIGRATIONS CONFIGURATION
 # ------------------------------------------------------------------------------
 MIGRATION_MODULES = {
-    'sites': 'wiki.allatra.club.contrib.sites.migrations'
+    'sites': 'wiki_allatra_club.contrib.sites.migrations'
 }
 
 # DEBUG
@@ -99,7 +126,7 @@ MANAGERS = ADMINS
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
 DATABASES = {
     # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
-    'default': env.db("DATABASE_URL", default="postgres://localhost/wiki.allatra.club"),
+    'default': env.db("DATABASE_URL", default="mysql://root@localhost/wiki_allatra_club_db"),
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 
@@ -113,7 +140,14 @@ DATABASES['default']['ATOMIC_REQUESTS'] = True
 TIME_ZONE = 'Europe/Kiev'
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#language-code
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
+LANGUAGES = [
+    ('ru', _('Russian')),
+    ('en', _('English')),
+]
+LOCALE_PATHS = (
+    str(ROOT_DIR('locale')),
+)
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#site-id
 SITE_ID = 1
@@ -159,7 +193,8 @@ TEMPLATES = [
                 'django.template.context_processors.static',
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
-                # Your stuff: custom template context processors go here
+                'sekizai.context_processors.sekizai',    # for django-wiki
+                'wiki_allatra_club.context_processors.get_books',     # show book variable in all templates
             ],
         },
     },
@@ -223,6 +258,11 @@ LOGIN_URL = 'account_login'
 # SLUGLIFIER
 AUTOSLUG_SLUGIFY_FUNCTION = 'slugify.slugify'
 
+### Django-wiki
+SENDFILE_BACKEND = 'sendfile.backends.simple'
+SENDFILE_ROOT = 'protected_downloads/protected'
+SENDFILE_URL = '/protected'
+### END
 
 # LOGGING CONFIGURATION
 # ------------------------------------------------------------------------------
