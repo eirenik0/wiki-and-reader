@@ -1,4 +1,4 @@
-wiki.allatra.club
+wiki_allatra_club
 ==============================
 
 This app allows you read books with interactive access for articles from encyclopedia.
@@ -9,7 +9,7 @@ LICENSE: BSD
 Settings
 ------------
 
-wiki.allatra.club relies extensively on environment settings which **will not work with Apache/mod_wsgi setups**. It has been deployed successfully with both Gunicorn/Nginx and even uWSGI/Nginx.
+wiki_allatra_club relies extensively on environment settings which **will not work with Apache/mod_wsgi setups**. It has been deployed successfully with both Gunicorn/Nginx and even uWSGI/Nginx.
 
 For configuration purposes, the following table maps the 'wiki.allatra.club' environment variables to their Django setting:
 
