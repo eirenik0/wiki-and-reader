@@ -1,0 +1,37 @@
+# - name: install sendmail
+#   apt: name=sendmail state=present
+
+- name: install image libraries
+  apt: name="{{ item }}" state=present
+  with_items:
+    - libfreetype6-dev
+    - libjpeg-dev
+    - liblcms2-dev
+    - libopenjpeg-dev
+    - libpng-dev
+    - libtiff4-dev
+    - libwebp-dev
+    - tcl8.6-dev
+    - tk8.6-dev
+    - zlib1g-dev
+
+- name: clone site to server
+  git: repo="{{ git_source }}" dest="{{ project_path }}" update=yes
+
+- name: pip install requirements.txt
+  remote_user: "{{ user }}"
+  pip: requirements="{{ project_path }}"/requirements.txt executable=pip3 virtualenv="{{ virtualenv_path }}"
+  pip: requirements="{{ project_path }}"/requirements/local.txt executable=pip3 virtualenv="{{ virtualenv_path }}"
+
+#  pip: "requirements=/home/vagrant/allatra_book/requirements.txt executable=pip3"
+#  pip: "requirements=/home/vagrant/allatra_book/requirements/local.txt executable=pip3"
+
+
+
+#- name: config postactivate
+#  template: src=postactivate
+#            dest="{{ virtualenv_path }}/bin/postactivate"
+#            owner="{{ user }}"
+#            group="{{ user }}"
+#            mode=0755
+#            backup=yes

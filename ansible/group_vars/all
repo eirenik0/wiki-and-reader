@@ -1,0 +1,14 @@
+user: wiki_club_user
+home_path: "/home/{{ user }}"
+
+project_name: wiki_allatra_club
+project_path: "/var/www/{{ project_name }}"
+virtualenv_path: "{{ project_path }}/env"
+
+http_port: 80
+domain: wiki.allatra.club
+git_source: https://Infernion@bitbucket.org/Infernion/wiki_allatra_club.git
+
+db_name: "{{ project_name }}_db"
+db_user: "{{ user }}"
+db_password: "vTbBV3WWEBbpS8NK"

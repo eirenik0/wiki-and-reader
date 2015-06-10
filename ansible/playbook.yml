@@ -1,0 +1,8 @@
+---
+- hosts: develop
+  roles:
+    - common
+    - mysql
+    - python
+    - django
+    - apache2

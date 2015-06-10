@@ -1,0 +1,23 @@
+#- include: time.yml
+#- include: user.yml
+
+- name: setup locale
+  locale_gen: name=en_US.UTF-8 state=present
+
+- name: update packages info
+  apt:  update_cache=yes
+
+- name: install htop
+  apt: name=htop state=present
+
+- name: install git
+  apt: name=git state=present
+
+- name: install libmemcached-dev
+  apt: name=libmemcached-dev state=present
+
+- name: install memcached
+  apt: name=memcached state=present
+
+- name: install libmysqlclient-dev
+  apt: name=libmysqlclient-dev state=present

@@ -1,0 +1,13 @@
+- name: install mysql server packages
+  apt: name={{ item }} state=present
+  with_items:
+    - mariadb-server
+    - mariadb-client
+    - libmysqlclient-dev
+    - python-mysqldb  # for ansible work
+
+- name: create mysql db
+  mysql_db: "name={{ db_name }} state=present"
+
+- name: create mysql user
+  mysql_user: "name={{ db_user }} password={{ db_password }} priv=*.*:ALL state=present"
