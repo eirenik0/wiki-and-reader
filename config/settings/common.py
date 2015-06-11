@@ -21,7 +21,7 @@ ROOT_DIR = environ.Path(__file__) - 3  # (/a/b/myfile.py - 3 = /)
 APPS_DIR = ROOT_DIR.path('wiki_allatra_club')
 
 env = environ.Env()
-# env.read_env(str(ROOT_DIR('config/.env')))
+env.read_env(str(ROOT_DIR('.env')))
 
 # APP CONFIGURATION
 # ------------------------------------------------------------------------------

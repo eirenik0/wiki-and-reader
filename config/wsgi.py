@@ -26,7 +26,6 @@ from django.core.wsgi import get_wsgi_application
 ROOT_DIR = environ.Path(__file__) - 2  # (/a/myfile.py - 2 = /)
 sys.path.append(str(ROOT_DIR))
 
-print(sys.path)
 
 # os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.production")
 
@@ -37,11 +36,6 @@ print(sys.path)
 
 def application(env, start_response):
     os.environ["DJANGO_SETTINGS_MODULE"] = "config.settings.production"
-    os.environ["DJANGO_SECRET_KEY"] = "kjgiky68723ghiGKJGOU&T%6yugv3bvJHFVyuk3"
-    os.environ["DATABASE_URL"] = "mysql://wiki_club_user:vTbBV3WWEBbpS8NK@localhost/wiki_allatra_club_db"
-    os.environ["SENDGRID_PASSWORD"] = "4T2Fn5za"
-    os.environ["SENDGRID_USERNAME"] = "infernion"
-    print(env)
     return get_wsgi_application()(env, start_response)
 # Use Whitenoise to serve static files
 # See: https://whitenoise.readthedocs.org/
