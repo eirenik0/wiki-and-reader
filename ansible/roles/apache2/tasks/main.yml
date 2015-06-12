@@ -1,11 +1,12 @@
+# apache2.2 version for allatra hetzler
 - name: install packages
   apt: name="{{ item }}" update_cache=yes state=latest
   with_items:
     - apache2
     - apache2-dev
-    - apache2-mpm-prefork
-    - apache2-prefork-dev
-#    - libapache2-mod-wsgi-py3
+#    - apache2-mpm-prefork
+#    - apache2-prefork-dev
+#    - libapache2-mod-wsgi-py3  # dosent work with python3.4
 
 - name: Install mod_wsgi
   pip: name=mod_wsgi executable=pip3
@@ -13,15 +14,12 @@
 - name: Install into Apache (system-wide)
   command: "mod_wsgi-express install-module"
 #
-#- name: Install dependencies for mod_wsgi-express
-#  lineinfile: dest="/etc/apache2/mods-available/wsgi_express.load" line="LoadModule wsgi_module /usr/lib/apache2/modules/mod_wsgi-py34.cpython-34m.so" state=present
-#  lineinfile: dest="/etc/apache2/mods-available/wsgi_express.conf" line="WSGIPythonHome {{ virtualenv_path }}" state=present
-
-
+- name: Install dependencies for mod_wsgi-express
+  copy: content="LoadModule wsgi_module /usr/lib/apache2/modules/mod_wsgi-py34.cpython-34m.so" dest="/etc/apache2/mods-available/wsgi_express.load"  state=present
+  copy: content="WSGIPythonHome /usr" dest="/etc/apache2/mods-available/wsgi_express.conf" state=present
+a2
 - name: enabled wsgi
   apache2_module: name=wsgi_express state=present
-  notify:
-    - restart apache2
 
 #- name: apache2 listen on port {{ http_port }}
 #  lineinfile: dest=/etc/apache2/ports.conf regexp="^Listen " line="Listen {{ http_port }}" state=present

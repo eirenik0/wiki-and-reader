@@ -15,23 +15,37 @@
     - tk8.6-dev
     - zlib1g-dev
 
-- name: clone site to server
-  git: repo="{{ git_source }}" dest="{{ project_path }}" update=yes
-
+#- name: create bare repo of site
+#  git: repo="{{ git_source }}" dest="{{ project_repo_path }}" update=yes bare=yes
+#
+#- name: copy template for checkout to work dir
+#  template: src=post-receive dest="{{ project_repo_path }}/hooks/post-receive"
+#
+#- name: chmod +x post-receive
+#  command: "chmod +x {{ project_repo_path }}/hooks/post-receive"
+#
+#- name: first checkout for move files from repo to work dir
+#  command: chdir="{{ project_repo_path }}/hooks" "git --work-tree={{ project_path }} --git-dir={{ project_repo_path }} checkout -f"
+#- include: deploy.yml
+# TODO: fix virtualenv creation
 - name: pip install requirements.txt
-  remote_user: "{{ user }}"
-  pip: requirements="{{ project_path }}"/requirements.txt executable=pip3 virtualenv="{{ virtualenv_path }}"
-  pip: requirements="{{ project_path }}"/requirements/local.txt executable=pip3 virtualenv="{{ virtualenv_path }}"
+  remote_user: "{{ user_name }}"
+  pip: requirements="{{ project_path }}"/requirements.txt version=python3 executable=pip3 virtualenv="{{ virtualenv_path }}" extra_args="--upgrade" state=present
+  pip: requirements="{{ project_path }}"/requirements/local.txt version=python3 executable=pip3 virtualenv="{{ virtualenv_path }}" extra_args="--upgrade" state=present
 
-#  pip: "requirements=/home/vagrant/allatra_book/requirements.txt executable=pip3"
-#  pip: "requirements=/home/vagrant/allatra_book/requirements/local.txt executable=pip3"
+- name: config postactivate
+  template: src=postactivate
+            dest="{{ virtualenv_path }}/bin/postactivate"
+            owner="{{ user_name }}"
+            group="{{ user_name }}"
+            mode=0755
+            backup=yes
 
+- name: copy .env (ENV variables) to project root
+  copy: src="../.env" dest="{{ project_path }}/.env"
 
-
-#- name: config postactivate
-#  template: src=postactivate
-#            dest="{{ virtualenv_path }}/bin/postactivate"
-#            owner="{{ user }}"
-#            group="{{ user }}"
-#            mode=0755
-#            backup=yes
+- name: collect static files
+  django_manage: >
+    command=collectstatic
+    app_path="{{ project_path }}"
+    virtualenv="{{ virtualenv_path }}"

@@ -46,13 +46,13 @@ class AuthorModel(models.Model):
 class BookModel(models.Model):
     title = models.CharField(max_length=300, verbose_name=_('title'))
     authors = models.ManyToManyField(AuthorModel, verbose_name=_('authors'))
-    book = models.FileField(upload_to='media/books/books',
+    book = models.FileField(upload_to='books/books',
                             verbose_name=_('book file'),
                             validators=[validate_epub])
     file_name = models.CharField(max_length=300, blank=True)
     added = models.DateTimeField(auto_now_add=True)
-    cover = models.ImageField(upload_to='media/books/covers',
-                              default='media/books/covers/defaults.png',
+    cover = models.ImageField(upload_to='books/covers',
+                              default='books/covers/defaults.png',
                               verbose_name=_('cover'))
 
     class Meta:

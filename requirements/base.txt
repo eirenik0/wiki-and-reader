@@ -34,8 +34,12 @@ pytz==2015.4
 
 # Django Wiki app
 git+https://github.com/Infernion/django-wiki.git@dev
-django-celery
 django-taggit
+
+# Celery
+django-celery
+Kombu
+billiard
 
 # App for hide links in wiki
 django-robots

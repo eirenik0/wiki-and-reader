@@ -7,7 +7,7 @@
     - python-mysqldb  # for ansible work
 
 - name: create mysql db
-  mysql_db: "name={{ db_name }} state=present"
+  mysql_db: name="{{ db_name }}" state=present
 
 - name: create mysql user
-  mysql_user: "name={{ db_user }} password={{ db_password }} priv=*.*:ALL state=present"
+  mysql_user: name="{{ db_user }}" password="{{ db_password }}" priv="*.*:ALL" state=present
