@@ -3,5 +3,4 @@ git --work-tree={{ project_path }} --git-dir={{ project_repo_path }} checkout -f
 
 {{ virtualenv_path }}/bin/python {{ project_path }}/manage.py collectstatic --noinput
 
-/home/wiki_club_user/wiki_allatra_club/.virtualenv/bin/python home/wiki_club_user/wiki_allatra_club/manage.py collectstatic --noinput
 sudo chmod -R 777  {{ project_path }}
