@@ -45,7 +45,7 @@ msgstr ""
 
 #: reader/admin.py:30
 msgid "Add chapters to book"
-msgstr "Добвать главы к книге"
+msgstr "Добавить главы к книге"
 
 #: reader/models.py:20 reader/models.py:25
 msgid "author"
