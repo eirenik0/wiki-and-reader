@@ -28,7 +28,7 @@
         // fileStorage.filePath = EPUBJS.filePath;
 
         // var reader = ePubReader("/static/AllatRa_Anastasia_Novykh.epub"); // cannot use imgs from another sources zipped "File not found in the epub"
-        var reader = ePubReader("{{ MEDIA_URL }}{{ book.book_file_name }}");
+        var reader = ePubReader("{{ MEDIA_URL }}{{ book.file_name }}");
       }
     };
 
