@@ -4,6 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class BookAdmin(admin.ModelAdmin):
+    exclude = ['file_name']
     list_display = ('title', 'book', 'is_chapters_connected_to_book')
     actions = ['add_chapters_to_book']
 

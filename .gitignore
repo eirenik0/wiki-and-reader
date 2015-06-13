@@ -1,4 +1,5 @@
 .env
+.env_back
 
 ### OSX ###
 .DS_Store

@@ -1,0 +1,13 @@
+---
+- hosts: allatra
+  roles:
+#    - common
+#    - mysql
+#    - python
+#    - django
+    - celery
+#    - apache2
+
+#- hosts: local
+#  tasks:
+#    - name: add remote branch to local

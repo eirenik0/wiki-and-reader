@@ -1,5 +1,8 @@
+import os
+
 from django.db import models
 from django.db.models import signals
+from django.dispatch import receiver
 from django.utils.translation import ugettext_lazy as _
 
 from django.forms import forms
@@ -46,13 +49,13 @@ class AuthorModel(models.Model):
 class BookModel(models.Model):
     title = models.CharField(max_length=300, verbose_name=_('title'))
     authors = models.ManyToManyField(AuthorModel, verbose_name=_('authors'))
-    book = models.FileField(upload_to='media/books/books',
+    book = models.FileField(upload_to='books/books',
                             verbose_name=_('book file'),
                             validators=[validate_epub])
     file_name = models.CharField(max_length=300, blank=True)
     added = models.DateTimeField(auto_now_add=True)
-    cover = models.ImageField(upload_to='media/books/covers',
-                              default='media/books/covers/defaults.png',
+    cover = models.ImageField(upload_to='books/covers',
+                              default='books/covers/defaults.png',
                               verbose_name=_('cover'))
 
     class Meta:
@@ -97,5 +100,41 @@ def async_add_chapters_to_book(instance, *args, **kwargs):
     logger.info("Chapters {} for book {} were saved".format(chapters_cfi, instance.title))
     return True
 
-
 signals.post_save.connect(async_add_chapters_to_book.delay, BookModel)
+
+# These two auto-delete files from filesystem when they are unneeded:
+@receiver(models.signals.post_delete, sender=BookModel)
+def auto_delete_file_on_delete(sender, instance, **kwargs):
+    """Deletes file from filesystem
+    when corresponding `BookModel` object is deleted.
+    """
+    def remove_if_exist(fields=[]):
+        for field in fields:
+            if field:
+                if os.path.isfile(field.path):
+                    os.remove(field.path)
+
+    remove_if_exist(fields=[instance.book, instance.cover])
+
+@receiver(models.signals.pre_save, sender=BookModel)
+def auto_delete_file_on_change(sender, instance, **kwargs):
+    """Deletes file from filesystem
+    when corresponding `BookModel` object is changed.
+    """
+    if not instance.pk:
+        return False
+
+    def remove_if_changed(fields=[]):
+        for field in fields:
+
+            try:
+                old_file = BookModel.objects.get(pk=instance.pk).__dict__[field]
+            except BookModel.DoesNotExist:
+                return False
+
+            new_file = instance.__dict__[field]
+            if not old_file == new_file:
+                if os.path.isfile(old_file.path):
+                    os.remove(old_file.path)
+
+    remove_if_changed(fields=['book', 'cover'])

@@ -13,25 +13,33 @@ middleware here, or combine a Django application with an application of another
 framework.
 
 """
-import os
-
+import os, sys
+import environ
+import django.db.utils
 from django.core.wsgi import get_wsgi_application
-from whitenoise.django import DjangoWhiteNoise
+# from whitenoise.django import DjangoWhiteNoise
 
 # We defer to a DJANGO_SETTINGS_MODULE already in the environment. This breaks
 # if running multiple sites in the same mod_wsgi process. To fix this, use
 # mod_wsgi daemon mode with each site in its own daemon process, or use
 # os.environ["DJANGO_SETTINGS_MODULE"] = "config.settings.production"
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.production")
+ROOT_DIR = environ.Path(__file__) - 2  # (/a/myfile.py - 2 = /)
+sys.path.append(str(ROOT_DIR))
+
+
+# os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.production")
 
 # This application object is used by any WSGI server configured to use this
 # file. This includes Django's development server, if the WSGI_APPLICATION
 # setting points here.
-application = get_wsgi_application()
+# application = get_wsgi_application()
 
+def application(env, start_response):
+    os.environ["DJANGO_SETTINGS_MODULE"] = "config.settings.production"
+    return get_wsgi_application()(env, start_response)
 # Use Whitenoise to serve static files
 # See: https://whitenoise.readthedocs.org/
-application = DjangoWhiteNoise(application)
+# application = DjangoWhiteNoise(application)
 
 # Apply WSGI middleware here.
 # from helloworld.wsgi import HelloWorldApplication

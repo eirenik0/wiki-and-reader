@@ -1,0 +1,12 @@
+- name: install ntp
+  apt: name=ntp state=latest
+
+- name: copy timezone file
+  copy: content="Kiev/Europe"
+        dest=/etc/timezone
+        owner=root
+        group=root
+        mode=0644
+        backup=yes
+  notify:
+    - update timezone

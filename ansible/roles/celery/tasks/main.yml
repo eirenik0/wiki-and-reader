@@ -1,0 +1,9 @@
+#- name: start Celery worker when system start (Upstart)
+#  template: src=wiki_club_celery.conf dest=/etc/init
+
+- name: start Celery worker when system start (System V)
+  template: src=wiki_club_celery.sh dest=/etc/init.d/wiki_club_celery.sh
+
+- name: chmod +x wiki_club_celery.sh
+  command: "chmod +x /etc/init.d/wiki_club_celery.sh"
+
