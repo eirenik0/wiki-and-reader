@@ -51,7 +51,7 @@ THIRD_PARTY_APPS = (
     'sekizai',  # django-wiki
     'sorl.thumbnail',   # django-wiki
     'taggit',   # django-wiki
-    'taggit_autosuggest',   # django-wiki
+    # 'taggit_autosuggest',   # django-wiki
     'wiki', # django-wiki
     'wiki.plugins.attachments', # django-wiki
     'wiki.plugins.annotations', # django-wiki
@@ -296,4 +296,7 @@ LOGGING = {
     }
 }
 
-# Your common stuff: Below this line define 3rd party library settings
+# Enable add html to articles
+WIKI_MARKDOWN_KWARGS = {
+    'safe_mode': False,
+}
