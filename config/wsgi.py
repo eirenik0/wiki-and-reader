@@ -35,7 +35,7 @@ sys.path.append(str(ROOT_DIR))
 # application = get_wsgi_application()
 
 def application(env, start_response):
-    os.environ["DJANGO_SETTINGS_MODULE"] = "config.settings.production"
+    os.environ["DJANGO_SETTINGS_MODULE"] = "config.settings.local"
     return get_wsgi_application()(env, start_response)
 # Use Whitenoise to serve static files
 # See: https://whitenoise.readthedocs.org/

@@ -1,29 +1,30 @@
 {% extends "wiki/article.html" %}
 {% load wiki_tags i18n sekizai_tags %}
 
-
 {% block wiki_contents_tab %}
 
   {% wiki_render article %}
-<div class="row">
-    <div class="col-lg-12">
-        <h1 class="page-header">{% trans 'Available books' %}</h1>
-    </div>
-{% for book in books_list %}
-    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-        <a class="thumbnail" href="/reader/{{ book.pk }}">
-            <img class="img-responsive" height="150px" width="226px" src="{{ book.cover.url }}" alt="">
-            <h3 class="text-center">{{ book.title }}</h3>
-        </a>
-    </div>
-  {% empty %}
-  <div class="col-lg-3 col-sm-6 col-xs-12">
-    <div class="items">
-      <i><h3>{% trans 'No books yet' %}</h3></i>
-    </div>
-  </div>
-{% endfor %}
-</div>
+    {%  if request.get_full_path == '/' %}
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">{% trans 'Available books' %}</h1>
+            </div>
+        {% for book in books_list %}
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="/reader/{{ book.pk }}">
+                    <img class="img-responsive" height="150px" width="226px" src="{{ book.cover.url }}" alt="">
+                    <h3 class="text-center">{{ book.title }}</h3>
+                </a>
+            </div>
+          {% empty %}
+          <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="items">
+              <i><h3>{% trans 'No books yet' %}</h3></i>
+            </div>
+          </div>
+        {% endfor %}
+        </div>
+    {% endif %}
 {% endblock %}
 
 
