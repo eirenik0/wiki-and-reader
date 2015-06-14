@@ -2,7 +2,7 @@
 {% get_current_language as LANGUAGE_CODE %}
 {% get_language_info_list for LANGUAGES as languages %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
   <meta charset="utf-8">
   <title>{% block wiki_pagetitle %}{% endblock %}{% trans 'AllatRa Encyclopedia' %}</title>
@@ -113,17 +113,14 @@
                    aria-expanded="false"> {{ LANGUAGE_CODE }}
                   <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
-                  <div id="language-select">
-                    {% for language in languages %}
-                      <form action="{% url 'set_language' %}" method="post">
-                        {% csrf_token %}
-                        <input name="language" type="hidden" value="{{ language.code }}"/>
-                        <input type="submit"
-                               value="{{ language.code|upper }}"
-                               class="btn-link{% if language.code == LANGUAGE_CODE %} current{% endif %}"/>
-                      </form>
-                    {% endfor %}
-                  </div>
+                        <form action="/i18n/setlang/" method="post" style="display: none" id="change_language_form">
+    {% csrf_token %}
+    <input type="hidden" value="" name="language" id="language" />
+</form>
+                      {% get_language_info_list for LANGUAGES as languages %}
+                        {% for language in languages %}
+                           <li><a href="#" lang_code="{{ language.code }}" class="change_language">{{ language.name_local }} ({{ language.code }})</a></li>
+                        {% endfor %}
                 </ul>
               </li>
             </ul><!-- Set language end-->
@@ -175,6 +172,14 @@
   <script src="{{ STATIC_URL }}wiki/js/jquery.min.js"></script>
 {% endblock %}
 
+<script>
+    // Change language
+    $('.change_language').click(function(e){
+        e.preventDefault();
+        $('#language').val($(this).attr('lang_code'));
+        $('#change_language_form').submit();
+    });
+</script>
 <script src="{{ STATIC_URL }}wiki/js/core.js"></script>
 <script src="{{ STATIC_URL }}wiki/bootstrap/js/bootstrap.min.js"></script>
 <!-- Optionally enable responsive features in IE8 -->

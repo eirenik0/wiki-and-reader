@@ -5,7 +5,7 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.views.generic import TemplateView
+from django.views.generic.base import RedirectView
 
 from wiki.urls import get_pattern as get_wiki_pattern
 from django_nyt.urls import get_pattern as get_nyt_pattern
@@ -14,6 +14,7 @@ from wiki_allatra_club.reader.views import ReaderView
 
 
 urlpatterns = [
+
     url(r'^reader/(?P<pk>[0-9]+)/', ReaderView.as_view(),name="reader"),
 
     url(r'^api/', include('wiki_allatra_club.api.urls', namespace='api')),
@@ -25,11 +26,14 @@ urlpatterns = [
     url(r'^users/', include("wiki_allatra_club.users.urls", namespace="users")),
     url(r'^accounts/', include('allauth.urls')),
 
+    url(r'^i18n/', include('django.conf.urls.i18n')),
+
     # Django-wiki url patterns
     url(r'^notifications/', get_nyt_pattern()),
     url(r'^', get_wiki_pattern()),
 
-    url(r'^i18n/', include('django.conf.urls.i18n')),
+
+
     url(r'^robots\.txt$', include('robots.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
