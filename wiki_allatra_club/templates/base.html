@@ -39,7 +39,7 @@
             <span class="icon-bar"></span>
           </button>
           {% block wiki_header_branding %}
-            <a class="navbar-brand" href="{% url 'index' %}" style="padding-top: 4px;">
+            <a class="navbar-brand" href="{% url 'wiki:root' %}" style="padding-top: 4px;">
               <span>
                 <img width="40" height="45" class="" src="{{ STATIC_URL }}img/logo_allatra.png">
                 {% trans 'AllatRa' %} {% trans 'Encyclopedia' %}
@@ -92,7 +92,7 @@
           </div>
           {% block wiki_header_navlinks %}
             <ul class="nav navbar-nav">
-              <li class=""><a href="/">{% trans "Home" %}</a></li>
+              <li class=""><a href="{% url 'wiki:root' %}">{% trans "Wiki" %}</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                    aria-expanded="false">                    {% trans "Select book" %}
@@ -105,7 +105,6 @@
                   {% endfor %}
                 </ul>
               </li>
-              <li class=""><a href="{% url 'wiki:root' %}">{% trans "Wiki" %}</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right"><!-- Set language start -->
               <li class="dropdown">
@@ -157,7 +156,7 @@
       <footer id="wiki-footer">
         <hr/>
         {% block wiki_footer_logo %}
-          <a href="{% url 'index' %}" class="pull-right">
+          <a href="{% url 'wiki:root' %}" class="pull-right">
             <img src="{{ STATIC_URL }}img/logo_allatra.png"/>
           </a>
         {% endblock %}

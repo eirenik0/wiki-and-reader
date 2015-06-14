@@ -14,9 +14,6 @@ from wiki_allatra_club.reader.views import ReaderView
 
 
 urlpatterns = [
-    url(r'^$',  # noqa
-        TemplateView.as_view(template_name='pages/index.html'),
-        name="index"),
     url(r'^reader/(?P<pk>[0-9]+)/', ReaderView.as_view(),name="reader"),
 
     url(r'^api/', include('wiki_allatra_club.api.urls', namespace='api')),
@@ -30,7 +27,7 @@ urlpatterns = [
 
     # Django-wiki url patterns
     url(r'^notifications/', get_nyt_pattern()),
-    url(r'^wiki/', get_wiki_pattern()),
+    url(r'^', get_wiki_pattern()),
 
     url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^robots\.txt$', include('robots.urls')),

@@ -94,3 +94,6 @@ class AnnotationSerializer(serializers.Serializer):
 
     def get_words(self, obj):
         return  [tag.name for tag in obj.tags.all()]
+
+# TODO: send all lexemes of word
+# TODO: remove images and cut content to 300 symbols

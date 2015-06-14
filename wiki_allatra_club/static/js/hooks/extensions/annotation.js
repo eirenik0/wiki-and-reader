@@ -67,5 +67,6 @@ EPUBJS.Hooks.register("beforeChapterDisplay").annotation = function (callback, r
         });
     });
     if (callback) callback();
-
 };
+
+//TODO: need to load annotation when page first load
