@@ -124,17 +124,18 @@ def auto_delete_file_on_change(sender, instance, **kwargs):
     if not instance.pk:
         return False
 
-    def remove_if_changed(fields=[]):
-        for field in fields:
 
-            try:
-                old_file = BookModel.objects.get(pk=instance.pk).__dict__[field]
-            except BookModel.DoesNotExist:
-                return False
+    try:
+        old_object = BookModel.objects.get(pk=instance.pk)
+    except BookModel.DoesNotExist:
+        return False
 
-            new_file = instance.__dict__[field]
-            if not old_file == new_file:
-                if os.path.isfile(old_file.path):
-                    os.remove(old_file.path)
+    new_cover = instance.cover
+    if not old_object.cover.name == 'books/covers/defaults.png' and not old_object.cover == new_cover:
+        if os.path.isfile(old_object.cover.path):
+            os.remove(old_object.cover.path)
 
-    remove_if_changed(fields=['book', 'cover'])
+    new_book = instance.book
+    if not old_object.book == new_book:
+        if os.path.isfile(old_object.book.path):
+            os.remove(old_object.book.path)
