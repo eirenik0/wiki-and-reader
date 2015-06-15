@@ -7,7 +7,7 @@ home_path: "/home/{{ user_name }}"
 project_name: wiki_allatra_club
 project_path: "{{ home_path }}/{{ project_name }}"
 project_repo_path: "{{ home_path }}/{{ project_name }}_repo.git"
-virtualenv_path: "{{ project_path }}/.virtualenv"
+virtualenv_path: "{{ home_path }}/virtualenv"
 
 http_port: 80
 domain: wiki.allatra.club

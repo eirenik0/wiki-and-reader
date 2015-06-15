@@ -1,6 +1,15 @@
 from wiki_allatra_club.reader.models import BookModel
 
 def get_books(request):
+
+    def chunks(l, n):
+        """Yield successive n-sized chunks from l."""
+        for i in range(0, len(l), n):
+            yield l[i:i+n]
+
     context = {}
-    context['books_list'] = BookModel.objects.all().order_by('title')
+    books = BookModel.objects.all().order_by('title')
+    context['books_list'] = books
+    context['books_chunked_list'] = chunks(books, 4)
     return context
+
