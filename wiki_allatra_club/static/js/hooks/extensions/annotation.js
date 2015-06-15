@@ -30,7 +30,7 @@ EPUBJS.Hooks.register("beforeChapterDisplay").annotation = function (callback, r
     var book_id = window.location.pathname.match("[0-9]+");
 
     var s = document.createElement("style");
-    s.innerHTML =".annotation { border-bottom: 2px dotted #800000; font-weight: normal; }";
+    s.innerHTML =".annotation { border-bottom: 2px dotted #800000; font: inherit; cursor: pointer;}";
 
     renderer.render.document.head.appendChild(s);
 

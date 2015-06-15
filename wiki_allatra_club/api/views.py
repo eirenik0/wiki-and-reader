@@ -41,6 +41,6 @@ def search(request):
     if not (word or book_id):
         return JsonResponse({'results': 'none'})
     book = BookModel.objects.get(pk=book_id)
-    book_address = book.book_epub.file.name
+    book_address = book.book.file.name
     worker = EpubWorker(book_address)
     return JsonResponse(worker.search_word(word))

@@ -8,7 +8,7 @@ def get_books(request):
             yield l[i:i+n]
 
     context = {}
-    books = BookModel.objects.all().order_by('title')
+    books = BookModel.objects.all().order_by('id')
     context['books_list'] = books
     context['books_chunked_list'] = chunks(books, 4)
     return context
