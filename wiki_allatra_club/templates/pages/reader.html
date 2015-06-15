@@ -4,7 +4,6 @@
 {% block css %}
   <link rel="stylesheet" href="{{ STATIC_URL }}css/normalize.css">
   <link rel="stylesheet" href="{{ STATIC_URL }}css/main.css">
-  <link rel="stylesheet" href="{{ STATIC_URL }}css/annotations.css">
   <link rel="stylesheet" href="{{ STATIC_URL }}css/jquery.webui-popover.min.css">
 
 
@@ -28,6 +27,7 @@
 
         // var reader = ePubReader("/static/AllatRa_Anastasia_Novykh.epub"); // cannot use imgs from another sources zipped "File not found in the epub"
         var reader = ePubReader("{{ MEDIA_URL }}{{ book.file_name }}");
+{#        var reader = ePubReader("/media/books/books/Novykh_-_Ptitsy_i_kamen_Iskonny_Shambaly.epub");#}
       }
     };
 
