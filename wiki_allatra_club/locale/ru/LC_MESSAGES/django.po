@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-02 17:35+0300\n"
+"POT-Creation-Date: 2015-09-02 18:23+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -408,26 +408,26 @@ msgstr "АллатРа Энциклопедия"
 msgid "Select book for reading"
 msgstr "Выберите книгу для чтения"
 
-#: wiki_allatra_club/templates/base.html:53
+#: wiki_allatra_club/templates/base.html:58
 msgid "No books yet"
 msgstr "Ни одной книги не добавлено"
 
-#: wiki_allatra_club/templates/base.html:71
+#: wiki_allatra_club/templates/base.html:77
 #: wiki_allatra_club/templates/index.html:298
 msgid "Log out"
 msgstr "Выход"
 
-#: wiki_allatra_club/templates/base.html:79
+#: wiki_allatra_club/templates/base.html:85
 #: wiki_allatra_club/templates/index.html:308
 msgid "Log in"
 msgstr "Вход"
 
-#: wiki_allatra_club/templates/base.html:82
+#: wiki_allatra_club/templates/base.html:88
 #: wiki_allatra_club/templates/index.html:311
 msgid "Sign up"
 msgstr "Регистрация"
 
-#: wiki_allatra_club/templates/base.html:92
+#: wiki_allatra_club/templates/base.html:98
 #: wiki_allatra_club/templates/index.html:276
 msgid "Search..."
 msgstr "Поиск..."
@@ -454,6 +454,10 @@ msgid ""
 "                <a href=\"https://github.com/futurepress/epub.js\"> epub.js</"
 "a>"
 msgstr ""
+
+#: wiki_allatra_club/templates/pages/reader.html:69
+msgid "Back to main Wiki page"
+msgstr "Вернуться на главную страницу Энциклопедии"
 
 #: wiki_allatra_club/templates/pages/reader.html:77
 msgid "Search"

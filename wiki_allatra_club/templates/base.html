@@ -38,22 +38,28 @@
                     <div class="column col-sm-3" id="sidebar">
                         <a class="logo" href="{% url 'wiki:root' %}">
                             <img class="img img-responsible" src="{{ STATIC_URL }}img/logo_allatra.png">
-{#                            <label>{% trans 'AllatRa' %} <br> {% trans 'Encyclopedia' %}</label>#}
+                            {#                            <label>{% trans 'AllatRa' %} <br> {% trans 'Encyclopedia' %}</label>#}
 
                         </a>
 
                         <h3>{% trans 'Select book for reading' %}</h3>
                         <ul class="nav">
-                            {% for book in books_list %}
-                                    <li>
-                                        <span>
-                                            <img class="" height="50px" width="50px" src="{{ book.cover.url }}" alt="">
-                                            <a href="/reader/{{ book.pk }}"><h4>{{ book.title }}</h4></a></li></span>
-                                {% empty %}
-                                    <li>{% trans 'No books yet'%}</li>
-                            {% endfor %}
-                        </ul>
+                            <li>
 
+                                {% for book in books_list %}
+                                    {#
+                                    <a class="thumbnail" href="/reader/{{ book.pk }}">
+                                        <img alt="{{ book.title }}" title="{{ book.title }}" height="50px" width="50px"
+                                             class="img-responsive" height="150px" width="226px"
+                                             src="{{ book.cover.url }}" alt="">
+                                    </a>
+
+                                    {% empty %}
+                                    <li>{% trans 'No books yet' %}</li>
+                                {% endfor %}
+                            </li>
+
+                        </ul>
 
 
                         <ul class="nav hidden-xs" id="sidebar-footer">
