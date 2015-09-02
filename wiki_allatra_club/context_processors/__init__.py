@@ -10,6 +10,6 @@ def get_books(request):
     context = {}
     books = BookModel.objects.all().order_by('id')
     context['books_list'] = books
-    context['books_chunked_list'] = chunks(books, 4)
+    context['books_chunked_list'] = chunks(books, 2)
     return context
 

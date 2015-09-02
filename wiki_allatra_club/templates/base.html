@@ -1,180 +1,149 @@
-{% load sekizai_tags i18n wiki_tags account %}{% load url from future %}
+{% load sekizai_tags i18n wiki_tags account staticfiles %}{% load url from future %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_language_info_list for LANGUAGES as languages %}
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}">
 <head>
-  <meta charset="utf-8">
-  <title>{% block wiki_pagetitle %}{% endblock %}{% trans 'AllatRa Encyclopedia' %}</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="description" content="">
-  <meta name="author" content="www.django-wiki.org">
+    <meta charset="utf-8">
+    <title>{% block wiki_pagetitle %}{% endblock %}{% trans 'AllatRa Encyclopedia' %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="author" content="www.django-wiki.org">
 
-  <!-- Le styles -->
-  <link href="{{ STATIC_URL }}wiki/bootstrap/css/wiki-bootstrap.min.css" rel="stylesheet">
-  {% block css %}{% endblock %}
-  {% render_block "css" %}
+    <!-- Le styles -->
+    <link href="{{ STATIC_URL }}wiki/bootstrap/css/wiki-bootstrap.min.css" rel="stylesheet">
+    {#    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">#}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
 
-  <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-  <!--[if lt IE 9]>
+    {% block css %}{% endblock %}
+    {% render_block "css" %}
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-  {% block head_js %}{% endblock %}
-  {% render_block "head_js" %}
+    {% block head_js %}{% endblock %}
+    {% render_block "head_js" %}
 </head>
 
 <body>
+<div class="wrapper">
+    <div class="box">
+        <div class="row">
 
-{% block wiki_body %}
+            {% block wiki_body %}
+                {% block wiki_navbar %}
+                    <!-- sidebar -->
+                    <div class="column col-sm-3" id="sidebar">
+                        <a class="logo" href="{% url 'wiki:root' %}">
+                            <img class="img img-responsible" src="{{ STATIC_URL }}img/logo_allatra.png">
+{#                            <label>{% trans 'AllatRa' %} <br> {% trans 'Encyclopedia' %}</label>#}
 
-  {% block wiki_navbar %}
-    <div class="navbar navbar-fixed-top navbar-default">
-      <div class="container">
-        <div class="navbar-header">
-          <!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          {% block wiki_header_branding %}
-            <a class="navbar-brand" href="{% url 'wiki:root' %}" style="padding-top: 4px;">
-              <span>
-                <img width="40" height="45" class="" src="{{ STATIC_URL }}img/logo_allatra.png">
-                {% trans 'AllatRa' %} {% trans 'Encyclopedia' %}
-              </span>
-            </a>
-          {% endblock %}
-        </div>
-        <div class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right" id="wiki-search-form" method="GET" action="{% url 'wiki:search' %}">
-            <div class="input-group">
-              <input type="search" class="form-control search-query" name="q" placeholder="{% trans "Search..." %}"/>
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="button">
-                  <span class="fa fa-search"></span>
-                </button>
-              </span>
-            </div>
-            <!-- /input-group -->
-          </form>
-          <div class="navbar-right">
-            {% if user.is_authenticated %}
-              <ul class="nav navbar-nav">
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <span class="badge notification-cnt">0</span>
-                    {{ user }}
-                    <b class="caret"></b>
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li>
-                      <a href="{% url 'wiki:logout' %}">
-                        <i class="fa fa-power-off"></i>
-                        {% trans "Log out" %}
-                      </a>
-                    </li>
-                    {% include "wiki/plugins/notifications/menubaritem.html" %}
-                  </ul>
-                </li>
-              </ul>
-            {% else %}
-              <ul class="nav navbar-nav">
-                <li>
-                  <a href="{% url 'account_login' %}">{% trans "Log in" %}</a>
-                </li>
-                <li>
-                  <a href="{% url 'account_signup' %}">{% trans "Sign up" %}</a>
-                </li>
-              </ul>
-            {% endif %}
-          </div>
-          {% block wiki_header_navlinks %}
-            <ul class="nav navbar-nav">
-              <li class=""><a href="{% url 'wiki:root' %}">{% trans "Wiki" %}</a></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                   aria-expanded="false">                    {% trans "Select book" %}
-                  <span class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
-                  {% for book in books_list %}
-                    <li><a href="/reader/{{ book.pk }}">{{ book.title }}</a></li>
-                  {% empty %}
-                    <li>No books yet.</li>
-                  {% endfor %}
-                </ul>
-              </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right"><!-- Set language start -->
-              <li class="dropdown">
+                        </a>
 
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                   aria-expanded="false"> {{ LANGUAGE_CODE }}
-                  <span class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
-                        <form action="/i18n/setlang/" method="post" style="display: none" id="change_language_form">
-    {% csrf_token %}
-    <input type="hidden" value="" name="language" id="language" />
-</form>
-                      {% get_language_info_list for LANGUAGES as languages %}
-                        {% for language in languages %}
-                           <li><a href="#" lang_code="{{ language.code }}" class="change_language">{{ language.name_local }} ({{ language.code }})</a></li>
-                        {% endfor %}
-                </ul>
-              </li>
-            </ul><!-- Set language end-->
-          {% endblock %}
-        </div>
-      </div>
-    </div>
-  {% endblock %}
+                        <h3>{% trans 'Select book for reading' %}</h3>
+                        <ul class="nav">
+                            {% for book in books_list %}
+                                    <li>
+                                        <span>
+                                            <img class="" height="50px" width="50px" src="{{ book.cover.url }}" alt="">
+                                            <a href="/reader/{{ book.pk }}"><h4>{{ book.title }}</h4></a></li></span>
+                                {% empty %}
+                                    <li>{% trans 'No books yet'%}</li>
+                            {% endfor %}
+                        </ul>
 
-  <div class="container" style="margin-top: 60px;">
 
-    {% if messages %}
-      <!-- Messages for this instance -->
-      {% for message in messages %}
-        <div class="alert alert-{{ message.tags }}">
-          <a class="close" data-dismiss="alert" href="#">&times;</a>
-          {{ message }}
-        </div>
-      {% endfor %}
-    {% endif %}
 
-    <!-- Reserved for breadcrumbs -->
-    {% block wiki_breadcrumbs %}{% endblock %}
+                        <ul class="nav hidden-xs" id="sidebar-footer">
+                            {% if user.is_authenticated %}
+                                <li class="dropup">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <span class="badge notification-cnt">0</span>
+                                        {{ user }}
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="{% url 'wiki:logout' %}">
+                                                <i class="fa fa-power-off"></i>
+                                                {% trans "Log out" %}
+                                            </a>
+                                        </li>
+                                        {% include "wiki/plugins/notifications/menubaritem.html" %}
+                                    </ul>
+                                </li>
+                            {% else %}
+                                <li>
+                                    <a href="{% url 'account_login' %}">{% trans "Log in" %}</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'account_signup' %}">{% trans "Sign up" %}</a>
+                                </li>
+                            {% endif %}
 
-    <!-- Main page contents go here -->
-    {% block wiki_contents %}{% endblock %}
-    {% block content %}{% endblock %}
+                            <li></li>
+                            <li>
+                                <form class="col-md-4" id="wiki-search-form" method="GET"
+                                      action="{% url 'wiki:search' %}">
+                                    <div class="input-group">
+                                        <input type="search" class="form-control search-query" name="q"
+                                               placeholder="{% trans "Search..." %}"/>
+                                  <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">
+                                        <span class="fa fa-search"></span>
+                                    </button>
+                                  </span>
+                                    </div>
+                                    <!-- /input-group -->
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /sidebar -->
+                {% endblock %}
+                <!-- main -->
+                <div class="column col-sm-9" id="main">
+                    <div class="padding">
+                        <div class="full col-sm-9">
 
-    {% block footer %}
-      <footer id="wiki-footer">
-        <hr/>
-        {% block wiki_footer_logo %}
-          <a href="{% url 'wiki:root' %}" class="pull-right">
-            <img src="{{ STATIC_URL }}img/logo_allatra.png"/>
-          </a>
-        {% endblock %}
-        {% block wiki_footer_prepend %}
-        {% endblock %}
-        <p>{% blocktrans %}Powered by <a href="http://www.django-wiki.org">django-wiki</a> and <a href="https://github.com/futurepress/epub.js"> epub.js</a>{% endblocktrans %}.</p>
-        <div style="clear: both"></div>
-      </footer>
-    {% endblock footer %}
-  </div>
+                            <!-- content -->
 
-  </div> <!-- /container -->
+                            {% if messages %}
+                                <!-- Messages for this instance -->
+                                {% for message in messages %}
+                                    <div class="alert alert-{{ message.tags }}">
+                                        <a class="close" data-dismiss="alert" href="#">&times;</a>
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
 
-{% endblock %}
+                            <!-- Reserved for breadcrumbs -->
+                            {% block wiki_breadcrumbs %}{% endblock %}
+
+                            <!-- Main page contents go here -->
+                            {% block wiki_contents %}{% endblock %}
+                            {% block content %}{% endblock %}
+
+                        </div>
+                        <!-- /col-9 -->
+                    </div>
+                    <!-- /padding -->
+                </div>
+                <!-- /main -->
+                </div> <!-- /container -->
+                </div>
+                </div>
+            {% endblock %}
 {% block jquery %}
-  <script src="{{ STATIC_URL }}wiki/js/jquery.min.js"></script>
+    <script src="{{ STATIC_URL }}wiki/js/jquery.min.js"></script>
 {% endblock %}
 
 <script>
     // Change language
-    $('.change_language').click(function(e){
+    $('.change_language').click(function (e) {
         e.preventDefault();
         $('#language').val($(this).attr('lang_code'));
         $('#change_language_form').submit();
@@ -188,4 +157,3 @@
 
 </body>
 </html>
-

@@ -3,35 +3,36 @@
 
 {% block wiki_contents_tab %}
 
-  {% wiki_render article %}
+    {% wiki_render article %}
 
-    {%  if request.get_full_path == '/' %}
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">{% trans 'Available books' %}</h1>
-            </div>
-        </div>
-        {% for books in books_chunked_list %}
-            <div class="row">
-            {% for book in books %}
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="/reader/{{ book.pk }}">
-                    <img class="img-responsive" height="150px" width="226px" src="{{ book.cover.url }}" alt="">
-                    <h3 class="text-center">{{ book.title }}</h3>
-                </a>
-            </div>
-            {% endfor %}
-            </div>
-          {% empty %}
-            <div class="row">
-          <div class="col-lg-3 col-sm-6 col-xs-12">
-            <div class="items">
-              <i><h3>{% trans 'No books yet' %}</h3></i>
-            </div>
-          </div>
-            </div>
-        {% endfor %}
-    {% endif %}
+{#    {% if request.get_full_path == '/' %}#}
+{#        <div class="row">#}
+{#            <div class="col-lg-12">#}
+{#                <h1 class="page-header">{% trans 'Available books' %}</h1>#}
+{#            </div>#}
+{#        </div>#}
+{#        {% for books in books_chunked_list %}#}
+{#            <div class="row">#}
+{#                {% for book in books %}#}
+{#                    <div class="col-lg-3 col-md-4 col-xs-6 thumb">#}
+{#                        <a class="thumbnail" href="/reader/{{ book.pk }}">#}
+{#                            <img class="img-responsive" height="150px" width="226px" src="{{ book.cover.url }}" alt="">#}
+{##}
+{#                            <h3 class="text-center">{{ book.title }}</h3>#}
+{#                        </a>#}
+{#                    </div>#}
+{#                {% endfor %}#}
+{#            </div>#}
+{#            {% empty %}#}
+{#            <div class="row">#}
+{#                <div class="col-lg-3 col-sm-6 col-xs-12">#}
+{#                    <div class="items">#}
+{#                        <i><h3>{% trans 'No books yet' %}</h3></i>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        {% endfor %}#}
+{#    {% endif %}#}
 {% endblock %}
 
 

@@ -143,7 +143,7 @@ TIME_ZONE = 'Europe/Kiev'
 LANGUAGE_CODE = 'ru'
 LANGUAGES = [
     ('ru', _('Russian')),
-    ('en', _('English')),
+    # ('en', _('English')),
 ]
 LOCALE_PATHS = (
     str(ROOT_DIR('locale')),

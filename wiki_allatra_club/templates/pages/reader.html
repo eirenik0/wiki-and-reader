@@ -61,9 +61,16 @@
   <script src="{{ STATIC_URL }}js/hooks/extensions/annotation.js"></script>
 {% endblock %}
 
-{% block content %}
+{% block wiki_body %}
     <div id="reader">
+
       <div id="sidebar">
+    <a class="logo" href="{% url 'wiki:root' %}">
+                            <img class="img img-responsible" src="{{ STATIC_URL }}img/logo_allatra.png">
+{#                            <label>{% trans 'AllatRa' %} <br> {% trans 'Encyclopedia' %}</label>#}
+
+                        </a>
+        <br>
         <div id="panels">
           <input id="searchBox" placeholder="search" type="search">
 
@@ -74,6 +81,7 @@
 
         </div>
         <div id="tocView" class="view">
+            <h3>{% trans 'Contents' %}</h3>
         </div>
         <div id="searchView" class="view">
           <ul id="searchResults"></ul>
