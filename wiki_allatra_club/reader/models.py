@@ -11,6 +11,8 @@ from epubsearcher import EpubWorker
 
 from celery.task import task
 
+from slugify import slugify
+
 import logging
 logger = logging.getLogger(__name__)
 
@@ -53,6 +55,7 @@ class BookModel(models.Model):
                             verbose_name=_('book file'),
                             validators=[validate_epub])
     file_name = models.CharField(max_length=300, blank=True)
+    slug = models.CharField(max_length=150)
     added = models.DateTimeField(auto_now_add=True)
     cover = models.ImageField(upload_to='books/covers',
                               default='books/covers/defaults.png',
@@ -68,6 +71,12 @@ class BookModel(models.Model):
     @property
     def is_chapters_connected_to_book(self):
         return bool(self.chapterbookmodel_set.all())
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            # Newly created object, so set slug
+            self.slug = slugify(self.title)
+        super(BookModel, self).save(*args, **kwargs)
 
 
 class ChapterBookModel(models.Model):

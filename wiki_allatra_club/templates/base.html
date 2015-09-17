@@ -47,10 +47,10 @@
                             <li>
 
                                 {% for book in books_list %}
-                                    <a class="thumbnail" href="/reader/{{ book.pk }}">
+                                    <a class="thumbnail" href="/reader/{{ book.slug }}">
                                         <img alt="{{ book.title }}" title="{{ book.title }}" height="50px" width="50px"
                                              class="img-responsive" height="150px" width="226px"
-                                             src="{{ book.cover.url }}" alt="">
+                                         src="{{ book.cover.url }}" alt="">
                                     </a>
 
                                     {% empty %}
