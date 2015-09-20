@@ -293,7 +293,7 @@ input:-moz-placeholder {
   overflow-y: hidden;
   min-width: 300px;
   width: 25%;
-  height: 100%;
+  height: 78%;
   visibility: hidden;
   -webkit-transition: visibility 0 ease .5s;
   -moz-transition: visibility 0 ease .5s;
