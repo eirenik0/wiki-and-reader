@@ -195,6 +195,8 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'sekizai.context_processors.sekizai',    # for django-wiki
                 'wiki_allatra_club.context_processors.get_books',     # show book variable in all templates
+                'wiki_allatra_club.context_processors.get_url_children',
+                'wiki_allatra_club.context_processors.get_tags',
             ],
         },
     },
