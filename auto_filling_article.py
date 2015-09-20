@@ -26,7 +26,7 @@ def create_update_slug():
         book.slug = slugify(book.title)
         book.save()
 
-ALPHABET = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
+ALPHABET = 'абвгдежзийклмнопрстуфхцчшщэюя'
 KEYWORDS = ['аллат', 'Адви', 'Алатырь-камень', 'АллатРа', 'Алтарь', 'Альфа-ритм', 'бета-ритм', 'аниматизм', 'апсида',
             'Аскет', 'Ахура Мазда', 'айны'
             'Бамбара', 'Баота', 'Басуто', 'Благо',
@@ -58,7 +58,7 @@ KEYWORDS = ['аллат', 'Адви', 'Алатырь-камень', 'Аллат
 def create_article():
     pass
 
-def create_
+# def create_
 
 def create_alphabetic_urls(url_slug='ru'):
     '''
@@ -71,13 +71,13 @@ def create_alphabetic_urls(url_slug='ru'):
     article = Article.objects.get(urlpath=urlpath)
     for char in ALPHABET:
         try:
-            URLPath.objects.get(slug=slugify(char))
+            URLPath.objects.get(slug=char)
         except ObjectDoesNotExist:
              URLPath.create_article(
                 urlpath,
-                slugify(char),
+                char,
                 title=char.upper(),
-                content='',
+                content='[article_list depth:2]',
                 user_message='',
                 user=user,
                 ip_address=None,
