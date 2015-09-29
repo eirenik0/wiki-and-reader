@@ -124,10 +124,10 @@ h6 {
 
 p {
     color: #666;
-    font-size: 13px;
+    font-size: 14px;
     font-family: 'Open Sans', sans-serif;
     line-height: 22px;
-    margin: 0;
+    /*margin: 0;*/
 }
 
 p strong {
@@ -5685,7 +5685,7 @@ ul.footer-nav li a:hover {
 }
 
 .column .padding {
-    padding: 20px;
+    padding-top: 20px;
 }
 
 .box {
@@ -5734,7 +5734,10 @@ ul.footer-nav li a:hover {
   position:absolute;bottom:5px;
 }
 #footer {
-  margin-bottom:20px;
+  /*margin-bottom:20px;*/
+    width: 100%;
+    bottom: 0;
+    position: absolute;
 }
 
 /* center and adjust the sidebar contents on smaller devices */
@@ -5783,4 +5786,9 @@ h1,h2,h3 {
 }
 
 small.text-muted {
-  font-family:courier,courier-new,monospace;
+	font-family: courier, courier-new, monospace;
+}
+
+#main {
+	padding: 0;
+}
