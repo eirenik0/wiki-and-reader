@@ -136,7 +136,16 @@
             {% addtoblock "js" %}
                 <script type="text/javascript" src="{% static 'js/libs/owl.carousel.js' %}"></script>
             {% endaddtoblock %}
+            {% addtoblock "js" %}
+                <script type="text/javascript">
+                    $('.wiki-article a').attr({
+                        target: '_blank',
+                        rel: 'nofollow'
+                    })
+                </script>
+            {% endaddtoblock %}
         {% endblock %}
+
     {% endif %}
 {% endblock %}
 
