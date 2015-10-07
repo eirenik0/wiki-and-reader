@@ -47,7 +47,7 @@ EPUBJS.reader.plugins.SearchController = function(Book) {
         }
 
         $searchResults.empty();
-        $searchResults.append("<li><p>Searching...</p></li>");
+        $searchResults.append("<li><p>Поиск...</p></li>");
 
 
 

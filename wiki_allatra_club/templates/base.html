@@ -17,7 +17,7 @@
     {% render_block "css" %}
 
     <!-- Le styles -->
-        <link href="{{ STATIC_URL }}wiki/bootstrap/css/wiki-bootstrap.min.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}wiki/bootstrap/css/wiki-bootstrap.min.css" rel="stylesheet">
     <link href="{% static 'css/styles.css' %}" rel="stylesheet">
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -38,59 +38,56 @@
                 {% block wiki_navbar %}
                     <!-- sidebar -->
                     <div class="column col-sm-3" id="sidebar">
-                        <a id="logo" href="{% url 'wiki:root' %}">
-                            <img class="img img-responsible" src="{{ STATIC_URL }}images/logo_allatra.png">
-{#                                                        <label>{% trans 'AllatRa' %} <br> {% trans 'Encyclopedia' %}</label>#}
-                        </a>
-
+                        <div id="logo">
+                            <a href="{% url 'wiki:root' %}">
+                                <img style=";" class="img img-responsible" src="{{ STATIC_URL }}images/logo_allatra.png">
+    {#                                                        <label>{% trans 'AllatRa' %} <br> {% trans 'Encyclopedia' %}</label>#}
+                            </a>
+                        </div>
+                        <hr>
                         <h3>{% trans 'Available books' %}</h3>
-                        <ul class="">
+                        <span>
 
                                 {% for book in books_list %}
-                                    <li style="z-index: 2;">
 
-                                        <a class="" href="/reader/{{ book.slug }}" style="color:darkcyan;">
+                                        <a class="" href="/reader/{{ book.slug }}" style="z-index: 2;color:darkcyan;">
                                             <img alt="{{ book.title }}" title="{{ book.title }}" height="50px" width="50px"
                                                  class="" height="5px" width="10px"
-                                                 src="{{ book.cover.url }}" alt="">
+                                                 src="{{ book.cover.url }}">
                                         </a>
-                                        {{ book.title }}
-                                    </li>
-
                                 {% empty %}
-                                    <li>{% trans 'No books yet' %}</li>
+                                    <p>{% trans 'No books yet' %}</p>
                                 {% endfor %}
 
-                        </ul>
-                        <img style="position: absolute; bottom: 35px; left:0; z-index: 1" src="{% static 'images/sidebar_background.png' %}">
+                        </span>
+{#                        <img style="position: absolute; bottom: 35px; left:0; z-index: 1" src="{% static 'images/sidebar_background.png' %}">#}
                         <ul class="nav hidden-xs" id="sidebar-footer">
-                            {% if user.is_authenticated %}
-                                <li class="dropup">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <span class="badge notification-cnt">0</span>
-                                        {{ user }}
-                                        <b class="caret"></b>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="{% url 'wiki:logout' %}">
-                                                <i class="fa fa-power-off"></i>
-                                                {% trans "Log out" %}
-                                            </a>
-                                        </li>
-                                        {% include "wiki/plugins/notifications/menubaritem.html" %}
-                                    </ul>
-                                </li>
-                            {% else %}
+{#                            {% if user.is_authenticated %}#}
+{#                                <li class="dropup">#}
+{#                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">#}
+{#                                        <span class="badge notification-cnt">0</span>#}
+{#                                        {{ user }}#}
+{#                                        <b class="caret"></b>#}
+{#                                    </a>#}
+{#                                    <ul class="dropdown-menu">#}
+{#                                        <li>#}
+{#                                            <a href="{% url 'wiki:logout' %}">#}
+{#                                                <i class="fa fa-power-off"></i>#}
+{#                                                {% trans "Log out" %}#}
+{#                                            </a>#}
+{#                                        </li>#}
+{#                                        {% include "wiki/plugins/notifications/menubaritem.html" %}#}
+{#                                    </ul>#}
+{#                                </li>#}
+{#                            {% else %}#}
                                 {#                                <li>#}
                                 {#                                    <a href="{% url 'account_login' %}">{% trans "Log in" %}</a>#}
                                 {#                                </li>#}
                                 {#                                <li>#}
                                 {#                                    <a href="{% url 'account_signup' %}">{% trans "Sign up" %}</a>#}
                                 {#                                </li>#}
-                            {% endif %}
+{#                            {% endif %}#}
 
-                            <li></li>
                             <li>
                                 <form class="col-md-4" id="wiki-search-form" method="GET"
                                       action="{% url 'wiki:search' %}">
@@ -105,6 +102,36 @@
                                     </div>
                                     <!-- /input-group -->
                                 </form>
+                            </li>
+                            <li>
+                                                            {% if user.is_authenticated %}
+                                <li class="dropup">
+                                    <div class="input-group">
+                                        <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown">
+                                            <span class="badge notification-cnt">0</span>
+                                            {{ user }}
+                                            <b class="caret"></b>
+                                        </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="{% url 'wiki:logout' %}">
+                                                <i class="fa fa-power-off"></i>
+                                                {% trans "Log out" %}
+                                            </a>
+                                        </li>
+                                        {% include "wiki/plugins/notifications/menubaritem.html" %}
+                                    </ul>
+                                                                                </div>
+
+                                </li>
+                            {% else %}
+                                <div class="input-group">
+                                    <a class="btn btn-default" href="{% url 'account_login' %}">{% trans "Log in" %}</a>
+                                </div>
+                                {#                                <li>#}
+                                {#                                    <a href="{% url 'account_signup' %}">{% trans "Sign up" %}</a>#}
+                                {#                                </li>#}
+                            {% endif %}
                             </li>
                         </ul>
                     </div>

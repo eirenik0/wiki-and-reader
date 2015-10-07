@@ -5718,6 +5718,9 @@ ul.footer-nav li a:hover {
 }
 
 #sidebar {
+	background-image: url("../images/sidebar_background.png");
+    background-repeat: no-repeat;
+    background-position: 20% 95%;
 	border-right: 4px solid cadetblue;
 	margin: 0;
     /*background: url(../images/sidebar_background.jpg) no-repeat;*/
@@ -5726,9 +5729,9 @@ ul.footer-nav li a:hover {
 
 #sidebar, #sidebar a {
     display: inline-block;
-    color:#ffffff;
+    color:grey;
     /*background-color:transparent;*/
-	text-shadow:1px 0 1px #888888;
+    /*text-shadow:1px 0 1px #888888;*/
     background-color: whitesmoke;
 
 }
@@ -5739,13 +5742,10 @@ ul.footer-nav li a:hover {
 /*}*/
 #logo {
     width: 100%;
-    background-color: antiquewhite;
-    margin: 0 -15px 0 -20px;
+    /*background-color: antiquewhite;*/
+    /*margin:0;*/
 }
-#logo img {
-        background-color: antiquewhite;
 
-}
 #sidebar a img {
     margin-top: 15px;
     /*width: 200px;*/
@@ -5821,7 +5821,3 @@ small.text-muted {
 #main {
 	padding: 0;
 }
-
-/*.box {*/
-	/*background-color: whitesmoke;*/
-/*}*/
