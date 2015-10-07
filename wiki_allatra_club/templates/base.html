@@ -38,31 +38,31 @@
                 {% block wiki_navbar %}
                     <!-- sidebar -->
                     <div class="column col-sm-3" id="sidebar">
-                        <a class="logo" href="{% url 'wiki:root' %}">
+                        <a id="logo" href="{% url 'wiki:root' %}">
                             <img class="img img-responsible" src="{{ STATIC_URL }}images/logo_allatra.png">
-                            {#                            <label>{% trans 'AllatRa' %} <br> {% trans 'Encyclopedia' %}</label>#}
-
+{#                                                        <label>{% trans 'AllatRa' %} <br> {% trans 'Encyclopedia' %}</label>#}
                         </a>
 
-                        <h3>{% trans 'Select book for reading' %}</h3>
-                        <ul class="nav">
-                            <li>
+                        <h3>{% trans 'Available books' %}</h3>
+                        <ul class="">
 
                                 {% for book in books_list %}
-                                    <a class="thumbnail" href="/reader/{{ book.slug }}">
-                                        <img alt="{{ book.title }}" title="{{ book.title }}" height="50px" width="50px"
-                                             class="img-responsive" height="150px" width="226px"
-                                             src="{{ book.cover.url }}" alt="">
-                                    </a>
+                                    <li style="z-index: 2;">
 
-                                    {% empty %}
+                                        <a class="" href="/reader/{{ book.slug }}" style="color:darkcyan;">
+                                            <img alt="{{ book.title }}" title="{{ book.title }}" height="50px" width="50px"
+                                                 class="" height="5px" width="10px"
+                                                 src="{{ book.cover.url }}" alt="">
+                                        </a>
+                                        {{ book.title }}
+                                    </li>
+
+                                {% empty %}
                                     <li>{% trans 'No books yet' %}</li>
                                 {% endfor %}
-                            </li>
 
                         </ul>
-
-
+                        <img style="position: absolute; bottom: 35px; left:0; z-index: 1" src="{% static 'images/sidebar_background.png' %}">
                         <ul class="nav hidden-xs" id="sidebar-footer">
                             {% if user.is_authenticated %}
                                 <li class="dropup">
@@ -120,7 +120,7 @@
                                                title="МОД «АЛЛАТРА»">
                                             <img width="80" height="80" title="МОД «АЛЛАТРА»"
                                                  src="{% static 'images/our_partners/mod-logo-mini.jpg' %}"
-                                                 alt="МОД «АЛЛАТРА»"> МОД «АЛЛАТРА»
+                                                 alt="МОД «АЛЛАТРА»">
                                         </a>
                                         </li>
                                         <li><a href="http://allatra-science.org" target="_blank" rel="nofollow"
@@ -133,28 +133,35 @@
                                                title="Краудфандинг по Совести">
                                             <img width="80" height="80" title="Краудфандинг по Совести"
                                                  src="{% static 'images/our_partners/kf-logo-mini.png' %}"
-                                                 alt="Краудфандинг по Совести"> Краудфандинг по Совести
+                                                 alt="Краудфандинг по Совести">
                                         </a>
                                         </li>
                                         <li><a href="http://allatra.tv" target="_blank" rel="nofollow"
                                                title="АллатРа ТВ">
                                             <img width="90" height="90" title="АллатРа ТВ"
                                                  src="{% static 'images/our_partners/tv-logo-mini.png' %}"
-                                                 alt="АллатРа ТВ"> ТВ
+                                                 alt="АллатРа ТВ">
                                         </a>
                                         </li>
                                         <li><a href="http://allatra-radio.com" target="_blank" rel="nofollow"
                                                title="АллатРа Радио">
-                                            <img width="100" height="100" title="АллатРа Радио"
+                                            <img width="120" height="100" title="АллатРа Радио"
                                                  src="{% static 'images/our_partners/radio-logo-mini.jpg' %}"
-                                                 alt="АллатРа Радио"> Радио
+                                                 alt="АллатРа Радио">
                                         </a>
                                         </li>
                                         <li><a href="http://allatravesti.com" target="_blank" rel="nofollow"
                                                title="АллатРа Вести">
-                                            <img width="80" height="80" title="АллатРа Вести"
+                                            <img height="80" title="АллатРа Вести"
                                                  src="{% static 'images/our_partners/vesti-logo-mini.jpg' %}"
-                                                 alt="АллатРа Вести"> Вести
+                                                 alt="АллатРа Вести">
+                                        </a>
+                                        </li>
+                                        <li><a href="http://allatra.club" target="_blank" rel="nofollow"
+                                               title="АллатРа Библиотека">
+                                            <img width="160" title="АллатРа Библиотека"
+                                                 src="{% static 'images/our_partners/allatra-library-mini.jpg' %}"
+                                                 alt="АллатРа Библиотека">
                                         </a>
                                         </li>
                                     </ul>
@@ -190,16 +197,16 @@
                     <!-- /padding -->
                     <hr>
 
-                    <div id="footer">
+{#                    <div id="footer">#}
                     {#                    <ul class="footer-menu">#}
                     {#                        <li class="active">#}
                     {#                            <a href="/" rel="nofollow">Главная</a>#}
                     {#                        </li>#}
                     {#                        #}
                     {#                    </ul>#}
-                    <p class="text-center"><span>© 2014 - 2015</span> <a class="moda-link" rel="nofollow" href="http://allatra.org">Международное
-                        общественное движение АЛЛАТРА</a></p>
-                </div>
+{#                    <p class="text-center"><span>© 2014 - 2015</span> <a class="moda-link" rel="nofollow" href="http://allatra.org">Международное#}
+{#                        общественное движение АЛЛАТРА</a></p>#}
+{#                </div>#}
                 </div>
                 <!-- /main -->
 

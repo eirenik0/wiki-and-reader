@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-20 23:05+0300\n"
+"POT-Creation-Date: 2015-10-06 11:06+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -406,20 +406,22 @@ msgstr "Удалить"
 msgid "AllatRa Encyclopedia"
 msgstr "АллатРа Энциклопедия"
 
-#: wiki_allatra_club/templates/base.html:47
-msgid "Select book for reading"
-msgstr "Выберите книгу для чтения"
+#: wiki_allatra_club/templates/base.html:46
+#, fuzzy
+#| msgid "Available books"
+msgid "Available books"
+msgstr "Доступные книги"
 
-#: wiki_allatra_club/templates/base.html:59
+#: wiki_allatra_club/templates/base.html:60
 msgid "No books yet"
 msgstr "Ни одной книги не добавлено"
 
-#: wiki_allatra_club/templates/base.html:78
+#: wiki_allatra_club/templates/base.html:77
 #: wiki_allatra_club/templates/index.html:298
 msgid "Log out"
 msgstr "Выход"
 
-#: wiki_allatra_club/templates/base.html:99
+#: wiki_allatra_club/templates/base.html:98
 #: wiki_allatra_club/templates/index.html:276
 msgid "Search..."
 msgstr "Поиск..."
@@ -499,25 +501,28 @@ msgstr "Полноэкранный"
 msgid "Reflow text when sidebars are open."
 msgstr "Перерисовывать текст когда боковая панель открыта."
 
-#: wiki_allatra_club/templates/wiki/article.html:24
+#: wiki_allatra_club/templates/wiki/article.html:23
 msgid "locked"
 msgstr ""
 
-#: wiki_allatra_club/templates/wiki/article.html:41
+#: wiki_allatra_club/templates/wiki/article.html:42
 msgid "This article was last modified:"
 msgstr "Статья была редактирована:"
 
-#: wiki_allatra_club/templates/wiki/view.html:39
+#: wiki_allatra_club/templates/wiki/view.html:41
 msgid "Index of Articles"
 msgstr "Алфавитный указатель статей"
 
-#: wiki_allatra_club/templates/wiki/view.html:51
+#: wiki_allatra_club/templates/wiki/view.html:53
 msgid "Tags"
 msgstr "Теги"
 
-#: wiki_allatra_club/templates/wiki/view.html:64
+#: wiki_allatra_club/templates/wiki/view.html:66
 msgid "Partners site"
 msgstr "Сайты — партнеры"
+
+#~ msgid "Select book for reading"
+#~ msgstr "Выберите книгу для чтения"
 
 #~ msgid "English"
 #~ msgstr "Английский"
@@ -556,9 +561,6 @@ msgstr "Сайты — партнеры"
 
 #~ msgid "Lets see how it's work"
 #~ msgstr "Посмотрите как это работает"
-
-#~ msgid "Available books"
-#~ msgstr "Доступные книги"
 
 #~ msgid "Thanks"
 #~ msgstr "Спасибо"

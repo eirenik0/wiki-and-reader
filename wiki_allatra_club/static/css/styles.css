@@ -46,7 +46,7 @@ body {
     line-height: 21px;
 	font-weight: 300;
 	color: #666;
-	background: url(../images/patterns/1.png) fixed repeat;
+	/*background-image: url(../images/patterns/1.png) fixed repeat;*/
 }
 strong, b {
 	font-weight: 600;
@@ -57,14 +57,14 @@ img {
 	height: auto;
 }
 
-ul, ol {
-	list-style: none;
-}
+/*ul, ol {*/
+	/*list-style: none;*/
+/*}*/
 
-ul {
-    padding: 0;
-    margin: 0;
-}
+/*ul {*/
+    /*padding: 0;*/
+    /*margin: 0;*/
+/*}*/
 
 a {
     transition: color 0.2s ease-in-out;
@@ -419,6 +419,11 @@ header {
 
 .top-bar.color-bar ul.social-list li:last-child a i {
 	border-right: 1px solid rgba(255,255,255,.1);
+}
+
+.top-bar .contact-details {
+    padding-left: 0;
+    text-align: center;
 }
 
 .top-bar.color-bar .contact-details li a:before {
@@ -5712,11 +5717,19 @@ ul.footer-nav li a:hover {
   width:70px;
 }
 
+#sidebar {
+	border-right: 4px solid cadetblue;
+	margin: 0;
+    /*background: url(../images/sidebar_background.jpg) no-repeat;*/
+	/*padding: 0 5px;*/
+}
+
 #sidebar, #sidebar a {
     display: inline-block;
     color:#ffffff;
-    background-color:transparent;
+    /*background-color:transparent;*/
 	text-shadow:1px 0 1px #888888;
+    background-color: whitesmoke;
 
 }
 /*#sidebar a.logo {*/
@@ -5724,20 +5737,36 @@ ul.footer-nav li a:hover {
   /*/!*background-color:#fff;*!/*/
   /*color:#777777;*/
 /*}*/
+#logo {
+    width: 100%;
+    background-color: antiquewhite;
+    margin: 0 -15px 0 -20px;
+}
+#logo img {
+        background-color: antiquewhite;
 
+}
 #sidebar a img {
     margin-top: 15px;
     /*width: 200px;*/
     /*height: 53px;*/
 }
 #sidebar-footer {
-  position:absolute;bottom:5px;
+  position:absolute;
+	bottom:0;
+  background-color: antiquewhite;
+	margin: 0 -20px 0 -15px;
+	padding: 5px 0;
+	width: 100%;
+}
+#sidebar-footer li a {
+	background-color: inherit;
 }
 #footer {
   /*margin-bottom:20px;*/
     width: 100%;
     bottom: 0;
-    position: absolute;
+    /*position: absolute;*/
 }
 
 /* center and adjust the sidebar contents on smaller devices */
@@ -5792,3 +5821,7 @@ small.text-muted {
 #main {
 	padding: 0;
 }
+
+/*.box {*/
+	/*background-color: whitesmoke;*/
+/*}*/
