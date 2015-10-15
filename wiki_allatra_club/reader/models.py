@@ -60,6 +60,7 @@ class BookModel(models.Model):
     cover = models.ImageField(upload_to='books/covers',
                               default='books/covers/defaults.png',
                               verbose_name=_('cover'))
+    # description = models.TextField(max_length=600, default=_('no description'))
 
     class Meta:
         verbose_name = _('book')

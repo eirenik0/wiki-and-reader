@@ -311,7 +311,7 @@ WIKI_MARKDOWN_KWARGS = {
 REVISIONS_PER_HOUR = 100
 
 # Maximum allowed revisions per minute for any given user or IP
-REVISIONS_PER_MINUTES = 6
+REVISIONS_PER_MINUTES = 12
 
 # Maximum allowed revisions per hour for any given user or IP
 REVISIONS_PER_HOUR_ANONYMOUS = 60
@@ -321,4 +321,4 @@ REVISIONS_PER_MINUTES_ANONYMOUS = 5
 
 # Number of minutes for looking up REVISIONS_PER_MINUTES and
 # REVISIONS_PER_MINUTES_ANONYMOUS
-REVISIONS_MINUTES_LOOKBACK = 2
+REVISIONS_MINUTES_LOOKBACK = 5

@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="www.django-wiki.org">
 
-{#    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">#}
+    {#    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">#}
 
     {% block css %}{% endblock %}
     {% render_block "css" %}
@@ -19,6 +19,7 @@
     <!-- Le styles -->
     <link href="{{ STATIC_URL }}wiki/bootstrap/css/wiki-bootstrap.min.css" rel="stylesheet">
     <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <link href="{% static 'bower_packages/jquery-flipster/dist/jquery.flipster.min.css' %}" rel="stylesheet">
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -40,53 +41,75 @@
                     <div class="column col-sm-3" id="sidebar">
                         <div id="logo">
                             <a href="{% url 'wiki:root' %}">
-                                <img style=";" class="img img-responsible" src="{{ STATIC_URL }}images/logo_allatra.png">
-    {#                                                        <label>{% trans 'AllatRa' %} <br> {% trans 'Encyclopedia' %}</label>#}
+                                <img style=";" class="img img-responsible"
+                                     src="{{ STATIC_URL }}images/logo_allatra.png">
+                                {#                                                        <label>{% trans 'AllatRa' %} <br> {% trans 'Encyclopedia' %}</label>#}
                             </a>
                         </div>
                         <hr>
-                        <h3>{% trans 'Available books' %}</h3>
-                        <span>
 
-                                {% for book in books_list %}
-
-                                        <a class="" href="/reader/{{ book.slug }}" style="z-index: 2;color:darkcyan;">
-                                            <img alt="{{ book.title }}" title="{{ book.title }}" height="50px" width="50px"
-                                                 class="" height="5px" width="10px"
-                                                 src="{{ book.cover.url }}">
-                                        </a>
-                                {% empty %}
-                                    <p>{% trans 'No books yet' %}</p>
-                                {% endfor %}
-
-                        </span>
-{#                        <img style="position: absolute; bottom: 35px; left:0; z-index: 1" src="{% static 'images/sidebar_background.png' %}">#}
+                        {% if request.get_full_path != '/' %}
+                            <div>
+                            <div>
+                                <h4 class="classic-title"><span><i class="fa fa-book"></i> {% trans 'Available books' %}</span>
+                                </h4>
+                                <nav>
+                                    <ul class="pagination alphapager">
+                                        {% for book in books_list %}
+                                            <li><a class="tumbtail" href="/reader/{{ book.slug }}"
+                                                   style="z-index: 2;color:darkcyan;">
+                                                <img alt="{{ book.title }}" title="{{ book.title }}" height="50px"
+                                                     width="50px"
+                                                     class="" height="5px" width="10px"
+                                                     src="{{ book.cover.url }}">
+                                            </a></li>
+                                            {% empty %}
+                                            <p>{% trans 'No books yet' %}</p>
+                                        {% endfor %}
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div>
+                                <h4 class="classic-title"><span><i
+                                        class="fa fa-book"></i> {% trans 'Index of Articles' %}</span></h4>
+                                <nav>
+                                    <ul class="pagination alphapager">
+                                        {% for url in url_children %}
+                                            <li class="">
+                                                <a href="{{ url.path }}">{{ url.char }}</a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </nav>
+                            </div>
+                            </div>
+                            {#                        <img style="position: absolute; bottom: 35px; left:0; z-index: 1" src="{% static 'images/sidebar_background.png' %}">#}           {% endif %}
                         <ul class="nav hidden-xs" id="sidebar-footer">
-{#                            {% if user.is_authenticated %}#}
-{#                                <li class="dropup">#}
-{#                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">#}
-{#                                        <span class="badge notification-cnt">0</span>#}
-{#                                        {{ user }}#}
-{#                                        <b class="caret"></b>#}
-{#                                    </a>#}
-{#                                    <ul class="dropdown-menu">#}
-{#                                        <li>#}
-{#                                            <a href="{% url 'wiki:logout' %}">#}
-{#                                                <i class="fa fa-power-off"></i>#}
-{#                                                {% trans "Log out" %}#}
-{#                                            </a>#}
-{#                                        </li>#}
-{#                                        {% include "wiki/plugins/notifications/menubaritem.html" %}#}
-{#                                    </ul>#}
-{#                                </li>#}
-{#                            {% else %}#}
-                                {#                                <li>#}
-                                {#                                    <a href="{% url 'account_login' %}">{% trans "Log in" %}</a>#}
-                                {#                                </li>#}
-                                {#                                <li>#}
-                                {#                                    <a href="{% url 'account_signup' %}">{% trans "Sign up" %}</a>#}
-                                {#                                </li>#}
-{#                            {% endif %}#}
+                            {#                            {% if user.is_authenticated %}#}
+                            {#                                <li class="dropup">#}
+                            {#                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">#}
+                            {#                                        <span class="badge notification-cnt">0</span>#}
+                            {#                                        {{ user }}#}
+                            {#                                        <b class="caret"></b>#}
+                            {#                                    </a>#}
+                            {#                                    <ul class="dropdown-menu">#}
+                            {#                                        <li>#}
+                            {#                                            <a href="{% url 'wiki:logout' %}">#}
+                            {#                                                <i class="fa fa-power-off"></i>#}
+                            {#                                                {% trans "Log out" %}#}
+                            {#                                            </a>#}
+                            {#                                        </li>#}
+                            {#                                        {% include "wiki/plugins/notifications/menubaritem.html" %}#}
+                            {#                                    </ul>#}
+                            {#                                </li>#}
+                            {#                            {% else %}#}
+                            {#                                <li>#}
+                            {#                                    <a href="{% url 'account_login' %}">{% trans "Log in" %}</a>#}
+                            {#                                </li>#}
+                            {#                                <li>#}
+                            {#                                    <a href="{% url 'account_signup' %}">{% trans "Sign up" %}</a>#}
+                            {#                                </li>#}
+                            {#                            {% endif %}#}
 
                             <li>
                                 <form class="col-md-4" id="wiki-search-form" method="GET"
@@ -104,34 +127,35 @@
                                 </form>
                             </li>
                             <li>
-                                                            {% if user.is_authenticated %}
-                                <li class="dropup">
-                                    <div class="input-group">
-                                        <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown">
-                                            <span class="badge notification-cnt">0</span>
-                                            {{ user }}
-                                            <b class="caret"></b>
-                                        </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="{% url 'wiki:logout' %}">
-                                                <i class="fa fa-power-off"></i>
-                                                {% trans "Log out" %}
+                                {% if user.is_authenticated %}
+                                    <li class="dropup">
+                                        <div class="input-group">
+                                            <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown">
+                                                <span class="badge notification-cnt">0</span>
+                                                {{ user }}
+                                                <b class="caret"></b>
                                             </a>
-                                        </li>
-                                        {% include "wiki/plugins/notifications/menubaritem.html" %}
-                                    </ul>
-                                                                                </div>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a href="{% url 'wiki:logout' %}">
+                                                        <i class="fa fa-power-off"></i>
+                                                        {% trans "Log out" %}
+                                                    </a>
+                                                </li>
+                                                {% include "wiki/plugins/notifications/menubaritem.html" %}
+                                            </ul>
+                                        </div>
 
-                                </li>
-                            {% else %}
-                                <div class="input-group">
-                                    <a class="btn btn-default" href="{% url 'account_login' %}">{% trans "Log in" %}</a>
-                                </div>
-                                {#                                <li>#}
-                                {#                                    <a href="{% url 'account_signup' %}">{% trans "Sign up" %}</a>#}
-                                {#                                </li>#}
-                            {% endif %}
+                                    </li>
+                                {% else %}
+                                    <div class="input-group">
+                                        <a class="btn btn-default"
+                                           href="{% url 'account_login' %}">{% trans "Log in" %}</a>
+                                    </div>
+                                    {#                                <li>#}
+                                    {#                                    <a href="{% url 'account_signup' %}">{% trans "Sign up" %}</a>#}
+                                    {#                                </li>#}
+                                {% endif %}
                             </li>
                         </ul>
                     </div>
@@ -140,61 +164,61 @@
                 <!-- main -->
                 <div class="column col-sm-9" id="main">
                     <div class="top-bar">
-                            <div class="row">
-                                <div class="col-md-12 header-sites">
-                                    <ul class="contact-details">
-                                        <li><a href="http://allatra.org/ru" target="_blank" rel="nofollow"
-                                               title="МОД «АЛЛАТРА»">
-                                            <img width="80" height="80" title="МОД «АЛЛАТРА»"
-                                                 src="{% static 'images/our_partners/mod-logo-mini.jpg' %}"
-                                                 alt="МОД «АЛЛАТРА»">
-                                        </a>
-                                        </li>
-                                        <li><a href="http://allatra-science.org" target="_blank" rel="nofollow"
-                                               title="АЛЛАТРА НАУКА">
-                                            <img width="80" height="60" title="АЛЛАТРА НАУКА"
-                                                 src="{% static 'images/our_partners/science-logo.png' %}"
-                                                 alt="АЛЛАТРА НАУКА"> </a>
-                                        </li>
-                                        <li><a href="http://allatra.in" target="_blank" rel="nofollow"
-                                               title="Краудфандинг по Совести">
-                                            <img width="80" height="80" title="Краудфандинг по Совести"
-                                                 src="{% static 'images/our_partners/kf-logo-mini.png' %}"
-                                                 alt="Краудфандинг по Совести">
-                                        </a>
-                                        </li>
-                                        <li><a href="http://allatra.tv" target="_blank" rel="nofollow"
-                                               title="АллатРа ТВ">
-                                            <img width="90" height="90" title="АллатРа ТВ"
-                                                 src="{% static 'images/our_partners/tv-logo-mini.png' %}"
-                                                 alt="АллатРа ТВ">
-                                        </a>
-                                        </li>
-                                        <li><a href="http://allatra-radio.com" target="_blank" rel="nofollow"
-                                               title="АллатРа Радио">
-                                            <img width="120" height="100" title="АллатРа Радио"
-                                                 src="{% static 'images/our_partners/radio-logo-mini.jpg' %}"
-                                                 alt="АллатРа Радио">
-                                        </a>
-                                        </li>
-                                        <li><a href="http://allatravesti.com" target="_blank" rel="nofollow"
-                                               title="АллатРа Вести">
-                                            <img height="80" title="АллатРа Вести"
-                                                 src="{% static 'images/our_partners/vesti-logo-mini.jpg' %}"
-                                                 alt="АллатРа Вести">
-                                        </a>
-                                        </li>
-                                        <li><a href="http://allatra.club" target="_blank" rel="nofollow"
-                                               title="АллатРа Библиотека">
-                                            <img width="160" title="АллатРа Библиотека"
-                                                 src="{% static 'images/our_partners/allatra-library-mini.jpg' %}"
-                                                 alt="АллатРа Библиотека">
-                                        </a>
-                                        </li>
-                                    </ul>
-                                </div>
-
+                        <div class="row">
+                            <div class="col-md-12 header-sites">
+                                <ul class="contact-details">
+                                    <li><a href="http://allatra.org/ru" target="_blank" rel="nofollow"
+                                           title="МОД «АЛЛАТРА»">
+                                        <img width="80" height="80" title="МОД «АЛЛАТРА»"
+                                             src="{% static 'images/our_partners/mod-logo-mini.jpg' %}"
+                                             alt="МОД «АЛЛАТРА»">
+                                    </a>
+                                    </li>
+                                    <li><a href="http://allatra-science.org" target="_blank" rel="nofollow"
+                                           title="АЛЛАТРА НАУКА">
+                                        <img width="80" height="60" title="АЛЛАТРА НАУКА"
+                                             src="{% static 'images/our_partners/science-logo.png' %}"
+                                             alt="АЛЛАТРА НАУКА"> </a>
+                                    </li>
+                                    <li><a href="http://allatra.in" target="_blank" rel="nofollow"
+                                           title="Краудфандинг по Совести">
+                                        <img width="80" height="80" title="Краудфандинг по Совести"
+                                             src="{% static 'images/our_partners/kf-logo-mini.png' %}"
+                                             alt="Краудфандинг по Совести">
+                                    </a>
+                                    </li>
+                                    <li><a href="http://allatra.tv" target="_blank" rel="nofollow"
+                                           title="АллатРа ТВ">
+                                        <img width="90" height="90" title="АллатРа ТВ"
+                                             src="{% static 'images/our_partners/tv-logo-mini.png' %}"
+                                             alt="АллатРа ТВ">
+                                    </a>
+                                    </li>
+                                    <li><a href="http://allatra-radio.com" target="_blank" rel="nofollow"
+                                           title="АллатРа Радио">
+                                        <img width="120" height="100" title="АллатРа Радио"
+                                             src="{% static 'images/our_partners/radio-logo-mini.jpg' %}"
+                                             alt="АллатРа Радио">
+                                    </a>
+                                    </li>
+                                    <li><a href="http://allatravesti.com" target="_blank" rel="nofollow"
+                                           title="АллатРа Вести">
+                                        <img height="80" title="АллатРа Вести"
+                                             src="{% static 'images/our_partners/vesti-logo-mini.jpg' %}"
+                                             alt="АллатРа Вести">
+                                    </a>
+                                    </li>
+                                    <li><a href="http://allatra.club" target="_blank" rel="nofollow"
+                                           title="АллатРа Библиотека">
+                                        <img width="160" title="АллатРа Библиотека"
+                                             src="{% static 'images/our_partners/allatra-library-mini.jpg' %}"
+                                             alt="АллатРа Библиотека">
+                                    </a>
+                                    </li>
+                                </ul>
                             </div>
+
+                        </div>
                     </div>
                     <div class="padding">
                         <div class="full col-sm-9">
@@ -224,16 +248,16 @@
                     <!-- /padding -->
                     <hr>
 
-{#                    <div id="footer">#}
+                    {#                    <div id="footer">#}
                     {#                    <ul class="footer-menu">#}
                     {#                        <li class="active">#}
                     {#                            <a href="/" rel="nofollow">Главная</a>#}
                     {#                        </li>#}
                     {#                        #}
                     {#                    </ul>#}
-{#                    <p class="text-center"><span>© 2014 - 2015</span> <a class="moda-link" rel="nofollow" href="http://allatra.org">Международное#}
-{#                        общественное движение АЛЛАТРА</a></p>#}
-{#                </div>#}
+                    {#                    <p class="text-center"><span>© 2014 - 2015</span> <a class="moda-link" rel="nofollow" href="http://allatra.org">Международное#}
+                    {#                        общественное движение АЛЛАТРА</a></p>#}
+                    {#                </div>#}
                 </div>
                 <!-- /main -->
 
@@ -260,6 +284,7 @@
 <script src="{{ STATIC_URL }}wiki/bootstrap/js/bootstrap.min.js"></script>
 <!-- Optionally enable responsive features in IE8 -->
 <script src="{{ STATIC_URL }}wiki/js/respond.min.js"></script>
+<script src="{{ STATIC_URL }}bower_packages/jquery-flipster/dist/jquery.flipster.min.js"></script>
 {% block js %}{% endblock %}
 
 {% render_block "js" %}
