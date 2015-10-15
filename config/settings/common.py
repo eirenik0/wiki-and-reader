@@ -322,3 +322,16 @@ REVISIONS_PER_MINUTES_ANONYMOUS = 5
 # Number of minutes for looking up REVISIONS_PER_MINUTES and
 # REVISIONS_PER_MINUTES_ANONYMOUS
 REVISIONS_MINUTES_LOOKBACK = 5
+
+# CACHING
+# ------------------------------------------------------------------------------
+try:
+    # Only do this here because thanks to django-pylibmc-sasl and pylibmc
+    # memcacheify is painful to install on windows.
+    # See: https://github.com/rdegges/django-heroku-memcacheify
+    from memcacheify import memcacheify
+    CACHES = memcacheify()
+except ImportError:
+    CACHES = {
+        'default': env("DJANGO_CACHE_URL", default="memcache://127.0.0.1:11211"),
+    }
