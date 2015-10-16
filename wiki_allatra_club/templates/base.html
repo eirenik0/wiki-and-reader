@@ -38,7 +38,7 @@
 
                 {% block wiki_navbar %}
                     <!-- sidebar -->
-                    <div class="column col-sm-3" id="sidebar">
+                    <div class="column col-sm-3" id="sidebar" style="padding: 5px;">
                         <div id="logo">
                             <a href="{% url 'wiki:root' %}">
                                 <img style=";" class="img img-responsible"
@@ -49,18 +49,17 @@
                         <hr>
 
                         {% if request.get_full_path != '/' %}
-                            <div>
+                            <div class="jumbotron">
                             <div>
                                 <h4 class="classic-title"><span><i class="fa fa-book"></i> {% trans 'Available books' %}</span>
                                 </h4>
                                 <nav>
-                                    <ul class="pagination alphapager">
+                                    <ul class="pagination">
                                         {% for book in books_list %}
-                                            <li><a class="tumbtail" href="/reader/{{ book.slug }}"
+                                            <li class="tumbtail"><a href="/reader/{{ book.slug }}"
                                                    style="z-index: 2;color:darkcyan;">
                                                 <img alt="{{ book.title }}" title="{{ book.title }}" height="50px"
-                                                     width="50px"
-                                                     class="" height="5px" width="10px"
+                                                     width="45px"
                                                      src="{{ book.cover.url }}">
                                             </a></li>
                                             {% empty %}
@@ -69,19 +68,19 @@
                                     </ul>
                                 </nav>
                             </div>
-                            <div>
-                                <h4 class="classic-title"><span><i
-                                        class="fa fa-book"></i> {% trans 'Index of Articles' %}</span></h4>
-                                <nav>
-                                    <ul class="pagination alphapager">
-                                        {% for url in url_children %}
-                                            <li class="">
-                                                <a href="{{ url.path }}">{{ url.char }}</a>
-                                            </li>
-                                        {% endfor %}
-                                    </ul>
-                                </nav>
-                            </div>
+{#                            <div>#}
+{#                                <h4 class="classic-title"><span><i#}
+{#                                        class="fa fa-book"></i> {% trans 'Index of Articles' %}</span></h4>#}
+{#                                <nav>#}
+{#                                    <ul class="pagination alphapager">#}
+{#                                        {% for url in url_children %}#}
+{#                                            <li class="">#}
+{#                                                <a href="{{ url.path }}">{{ url.char }}</a>#}
+{#                                            </li>#}
+{#                                        {% endfor %}#}
+{#                                    </ul>#}
+{#                                </nav>#}
+{#                            </div>#}
                             </div>
                             {#                        <img style="position: absolute; bottom: 35px; left:0; z-index: 1" src="{% static 'images/sidebar_background.png' %}">#}           {% endif %}
                         <ul class="nav hidden-xs" id="sidebar-footer">
