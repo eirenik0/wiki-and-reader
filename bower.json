@@ -1,0 +1,7 @@
+{
+  "name": "wiki_allatra_club",
+  "dependencies": {
+    "jquery-flipster": "~0.3.5",
+    "jquery": "~2.1.4"
+  }
+}

@@ -11,7 +11,6 @@
 {% block wiki_contents %}
 
   <div id="article-container">
-  {% if user.is_authenticated %}
     <ul class="nav nav-pills" id="article-menu">
       <li class="pull-left" id="article-title-li">
         <h1 id="article-title">
@@ -26,9 +25,11 @@
           </small>
         </h1>
       </li>
-      {% include "wiki/includes/article_menu.html" %}
+      {% if user.is_authenticated %}
+        {% include "wiki/includes/article_menu.html" %}
+      {% endif %}
+
     </ul>
-  {% endif %}
     <div>
       {% block wiki_contents_tab %}
       {% endblock %}

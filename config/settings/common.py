@@ -195,6 +195,8 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'sekizai.context_processors.sekizai',    # for django-wiki
                 'wiki_allatra_club.context_processors.get_books',     # show book variable in all templates
+                'wiki_allatra_club.context_processors.get_url_children',
+                'wiki_allatra_club.context_processors.get_tags',
             ],
         },
     },
@@ -300,3 +302,36 @@ LOGGING = {
 WIKI_MARKDOWN_KWARGS = {
     'safe_mode': False,
 }
+
+###################
+# WIKI SPAM PROTECTION #
+###################
+
+# Maximum allowed revisions per hour for any given user or IP
+REVISIONS_PER_HOUR = 300
+
+# Maximum allowed revisions per minute for any given user or IP
+REVISIONS_PER_MINUTES = 12
+
+# Maximum allowed revisions per hour for any given user or IP
+REVISIONS_PER_HOUR_ANONYMOUS = 60
+
+# Maximum allowed revisions per hour for any given user or IP
+REVISIONS_PER_MINUTES_ANONYMOUS = 5
+
+# Number of minutes for looking up REVISIONS_PER_MINUTES and
+# REVISIONS_PER_MINUTES_ANONYMOUS
+REVISIONS_MINUTES_LOOKBACK = 5
+
+# CACHING
+# ------------------------------------------------------------------------------
+try:
+    # Only do this here because thanks to django-pylibmc-sasl and pylibmc
+    # memcacheify is painful to install on windows.
+    # See: https://github.com/rdegges/django-heroku-memcacheify
+    from memcacheify import memcacheify
+    CACHES = memcacheify()
+except ImportError:
+    CACHES = {
+        'default': env("DJANGO_CACHE_URL", default="memcache://127.0.0.1:11211"),
+    }

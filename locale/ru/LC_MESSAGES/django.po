@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-02 18:23+0300\n"
+"POT-Creation-Date: 2015-10-06 11:06+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: config/settings/common.py:145
+msgid "Russian"
+msgstr "Русский"
 
 #: wiki_allatra_club/reader/admin.py:22
 msgid "Next books were already connected {}. This book were just connected {}"
@@ -39,48 +43,48 @@ msgstr "Что-то пошло не так"
 msgid "Add chapters to book"
 msgstr "Добвать главы к книге"
 
-#: wiki_allatra_club/reader/models.py:28
+#: wiki_allatra_club/reader/models.py:30
 msgid "Not a Epub File"
 msgstr "Файл книги не Epub"
 
-#: wiki_allatra_club/reader/models.py:36
+#: wiki_allatra_club/reader/models.py:38
 #, python-format
 msgid "%s is not a Epub File"
 msgstr "%s не файл формата Epub"
 
-#: wiki_allatra_club/reader/models.py:45
+#: wiki_allatra_club/reader/models.py:47
 msgid "author"
 msgstr "автор"
 
-#: wiki_allatra_club/reader/models.py:46 wiki_allatra_club/reader/models.py:51
+#: wiki_allatra_club/reader/models.py:48 wiki_allatra_club/reader/models.py:53
 msgid "authors"
 msgstr "авторы"
 
-#: wiki_allatra_club/reader/models.py:50
+#: wiki_allatra_club/reader/models.py:52
 msgid "title"
 msgstr "название"
 
-#: wiki_allatra_club/reader/models.py:53
+#: wiki_allatra_club/reader/models.py:55
 msgid "book file"
 msgstr "файл с книгой"
 
-#: wiki_allatra_club/reader/models.py:59
+#: wiki_allatra_club/reader/models.py:62
 msgid "cover"
 msgstr "обложка"
 
-#: wiki_allatra_club/reader/models.py:62
+#: wiki_allatra_club/reader/models.py:65
 msgid "book"
 msgstr "книга"
 
-#: wiki_allatra_club/reader/models.py:63
+#: wiki_allatra_club/reader/models.py:66
 msgid "books"
 msgstr "книги"
 
-#: wiki_allatra_club/reader/models.py:81
+#: wiki_allatra_club/reader/models.py:90
 msgid "chapter"
 msgstr "глава"
 
-#: wiki_allatra_club/reader/models.py:82
+#: wiki_allatra_club/reader/models.py:91
 msgid "chapters"
 msgstr "главы"
 
@@ -402,12 +406,13 @@ msgstr "Удалить"
 msgid "AllatRa Encyclopedia"
 msgstr "АллатРа Энциклопедия"
 
-#: wiki_allatra_club/templates/base.html:45
-#| msgid "Select Book for read"
-msgid "Select book for reading"
-msgstr "Выберите книгу для чтения"
+#: wiki_allatra_club/templates/base.html:46
+#, fuzzy
+#| msgid "Available books"
+msgid "Available books"
+msgstr "Доступные книги"
 
-#: wiki_allatra_club/templates/base.html:58
+#: wiki_allatra_club/templates/base.html:60
 msgid "No books yet"
 msgstr "Ни одной книги не добавлено"
 
@@ -415,16 +420,6 @@ msgstr "Ни одной книги не добавлено"
 #: wiki_allatra_club/templates/index.html:298
 msgid "Log out"
 msgstr "Выход"
-
-#: wiki_allatra_club/templates/base.html:85
-#: wiki_allatra_club/templates/index.html:308
-msgid "Log in"
-msgstr "Вход"
-
-#: wiki_allatra_club/templates/base.html:88
-#: wiki_allatra_club/templates/index.html:311
-msgid "Sign up"
-msgstr "Регистрация"
 
 #: wiki_allatra_club/templates/base.html:98
 #: wiki_allatra_club/templates/index.html:276
@@ -438,6 +433,14 @@ msgstr "АллатРа"
 #: wiki_allatra_club/templates/index.html:266
 msgid "Encyclopedia"
 msgstr "Энциклопедия"
+
+#: wiki_allatra_club/templates/index.html:308
+msgid "Log in"
+msgstr "Вход"
+
+#: wiki_allatra_club/templates/index.html:311
+msgid "Sign up"
+msgstr "Регистрация"
 
 #: wiki_allatra_club/templates/index.html:318
 msgid "Wiki"
@@ -496,10 +499,30 @@ msgstr "Полноэкранный"
 
 #: wiki_allatra_club/templates/pages/reader.html:131
 msgid "Reflow text when sidebars are open."
+msgstr "Перерисовывать текст когда боковая панель открыта."
+
+#: wiki_allatra_club/templates/wiki/article.html:23
+msgid "locked"
 msgstr ""
 
-#~ msgid "Russian"
-#~ msgstr "Русский"
+#: wiki_allatra_club/templates/wiki/article.html:42
+msgid "This article was last modified:"
+msgstr "Статья была редактирована:"
+
+#: wiki_allatra_club/templates/wiki/view.html:41
+msgid "Index of Articles"
+msgstr "Алфавитный указатель статей"
+
+#: wiki_allatra_club/templates/wiki/view.html:53
+msgid "Tags"
+msgstr "Теги"
+
+#: wiki_allatra_club/templates/wiki/view.html:66
+msgid "Partners site"
+msgstr "Сайты — партнеры"
+
+#~ msgid "Select book for reading"
+#~ msgstr "Выберите книгу для чтения"
 
 #~ msgid "English"
 #~ msgstr "Английский"
@@ -538,9 +561,6 @@ msgstr ""
 
 #~ msgid "Lets see how it's work"
 #~ msgstr "Посмотрите как это работает"
-
-#~ msgid "Available books"
-#~ msgstr "Доступные книги"
 
 #~ msgid "Thanks"
 #~ msgstr "Спасибо"
