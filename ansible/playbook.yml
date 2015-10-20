@@ -1,7 +1,7 @@
 ---
 - hosts: allatra
   roles:
-#    - common
+    - common
 #    - mysql
 #    - python
 #    - django

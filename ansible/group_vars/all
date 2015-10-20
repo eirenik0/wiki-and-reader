@@ -1,3 +1,8 @@
+
+create_swap_file: no
+swap_file_path: /swapfile
+swap_file_size_kb: 512
+
 user_name: wiki_club_user
 user_pass: "ssfhs!235!d"
 user_groups: www-data
