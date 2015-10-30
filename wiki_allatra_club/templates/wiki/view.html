@@ -174,19 +174,10 @@
             {% endaddtoblock %}
             {% addtoblock "js" %}
                 <script type="text/javascript">
-                    $('.wiki-article li a').attr({
+                    $('.wiki-article ol li ').attr({
                         target: '_blank',
                         rel: 'nofollow'
                     })
-                </script>
-                <script>
-                    <!--
-
-                    $(function () {
-                        $(".flipster").flipster({style: 'carousel', start: 0});
-                    });
-
-                    -->
                 </script>
             {% endaddtoblock %}
         {% endblock %}
