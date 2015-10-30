@@ -25,6 +25,8 @@
 #    - python-pip
 #    - python-pycurl
     - supervisor
+    - libxml2-dev
+    - libxslt-dev
   tags: packages
 
 - name: Install virtualenv

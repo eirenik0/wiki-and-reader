@@ -5,9 +5,12 @@
 #    - common
 #    - mysql
 #    - python
-    - django
-    - celery
+#    - django
+#    - celery
+#    - gunicorn
+#    - nginx
 #    - apache2
+    - web
 
 #- hosts: local
 #  tasks:
