@@ -27,7 +27,7 @@ SECRET_KEY = env("DJANGO_SECRET_KEY")
 
 # django-secure
 # ------------------------------------------------------------------------------
-INSTALLED_APPS += ("djangosecure", )
+# INSTALLED_APPS += ("djangosecure", )
 
 # MIDDLEWARE_CLASSES = (
 #     # Make sure djangosecure.middleware.SecurityMiddleware is listed first

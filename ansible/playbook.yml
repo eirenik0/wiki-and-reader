@@ -1,12 +1,16 @@
 ---
-- hosts: allatra
+- hosts: production
   roles:
+#    - base
 #    - common
 #    - mysql
 #    - python
 #    - django
-    - celery
+#    - celery
+#    - gunicorn
+#    - nginx
 #    - apache2
+    - web
 
 #- hosts: local
 #  tasks:

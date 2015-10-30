@@ -9,7 +9,7 @@
     - liblcms2-dev
     - libopenjpeg-dev
     - libpng-dev
-    - libtiff4-dev
+    - libtiff5-dev
     - libwebp-dev
     - tcl8.6-dev
     - tk8.6-dev
@@ -30,8 +30,8 @@
 # TODO: fix virtualenv creation
 - name: pip install requirements.txt
   remote_user: "{{ user_name }}"
-  pip: requirements="{{ project_path }}"/requirements.txt version=python3 executable=pip3 virtualenv="{{ virtualenv_path }}" extra_args="--upgrade" state=present
-  pip: requirements="{{ project_path }}"/requirements/local.txt version=python3 executable=pip3 virtualenv="{{ virtualenv_path }}" extra_args="--upgrade" state=present
+  pip: requirements="{{ project_path }}"/requirements.txt version=python3 executable=pip virtualenv="{{ virtualenv_path }}" extra_args="--upgrade" state=present
+  pip: requirements="{{ project_path }}"/requirements/local.txt version=python3 executable=pip virtualenv="{{ virtualenv_path }}" extra_args="--upgrade" state=present
 
 - name: config postactivate
   template: src=postactivate

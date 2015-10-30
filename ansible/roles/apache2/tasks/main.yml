@@ -9,7 +9,8 @@
 #    - libapache2-mod-wsgi-py3  # dosent work with python3.4
 
 - name: Install mod_wsgi
-  pip: name=mod_wsgi executable=pip3
+  pip: name=mod_wsgi executable=pip
+  pip: name=mod_wsgi-httpd executable=pip
 
 - name: Install into Apache (system-wide)
   command: "mod_wsgi-express install-module"
