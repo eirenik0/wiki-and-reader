@@ -93,9 +93,10 @@ ALLOWED_HOSTS = ["*"]
 # ------------------------------------------------------------------------------
 DEFAULT_FROM_EMAIL = env('DJANGO_DEFAULT_FROM_EMAIL',
                          default='wiki_allatra_club <noreply@wiki.allatra.club>')
-EMAIL_HOST = env("DJANGO_EMAIL_HOST", default='smtp.sendgrid.com')
-EMAIL_HOST_PASSWORD = env("SENDGRID_PASSWORD")
-EMAIL_HOST_USER = env('SENDGRID_USERNAME')
+
+EMAIL_HOST = env("DJANGO_EMAIL_HOST", default='smtp.gmail.com')
+EMAIL_HOST_PASSWORD = env("GMAIL_PASSWORD", default="schambala2012")
+EMAIL_HOST_USER = env('GMAIL_USERNAME', default="wiki.allatra.club@gmail.com")
 EMAIL_PORT = env("EMAIL_PORT", default=587)
 EMAIL_SUBJECT_PREFIX = env("EMAIL_SUBJECT_PREFIX", default='[wiki.allatra.club] ')
 EMAIL_USE_TLS = True
@@ -104,12 +105,12 @@ SERVER_EMAIL = EMAIL_HOST_USER
 # TEMPLATE CONFIGURATION
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/templates/api/#django.template.loaders.cached.Loader
-TEMPLATES[0]['OPTIONS']['loaders'] = [
-    ('django.template.loaders.cached.Loader', [
-        'django.template.loaders.filesystem.Loader',
-        'django.template.loaders.app_directories.Loader',
-    ]),
-]
+# TEMPLATES[0]['OPTIONS']['loaders'] = [
+#     ('django.template.loaders.cached.Loader', [
+#         'django.template.loaders.filesystem.Loader',
+#         'django.template.loaders.app_directories.Loader',
+#     ]),
+# ]
 
 # DATABASE CONFIGURATION
 # ------------------------------------------------------------------------------
