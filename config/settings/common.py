@@ -23,6 +23,13 @@ APPS_DIR = ROOT_DIR.path('wiki_allatra_club')
 env = environ.Env()
 env.read_env(str(ROOT_DIR('.env')))
 
+# SECRET CONFIGURATION
+# ------------------------------------------------------------------------------
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
+# Note: This key only used for development and testing.
+SECRET_KEY = env("DJANGO_SECRET_KEY", default='CHANGEME!!!')
+
+
 # APP CONFIGURATION
 # ------------------------------------------------------------------------------
 DJANGO_APPS = (
@@ -126,7 +133,7 @@ MANAGERS = ADMINS
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
 DATABASES = {
     # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
-    'default': env.db("DATABASE_URL", default="mysql://root@localhost/wiki_allatra_club_db"),
+    'default': env.db("DATABASE_URL1", default="mysql://root@localhost/wiki_allatra_club_db"),
 }
 # DATABASES['default']['ATOMIC_REQUESTS'] = True
 
@@ -172,6 +179,7 @@ TEMPLATES = [
         'DIRS': [
             str(APPS_DIR.path('templates')),
         ],
+        'APP_DIRS': True,
         'OPTIONS': {
             # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-debug
             'debug': DEBUG,
