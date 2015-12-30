@@ -27,6 +27,44 @@
     <![endif]-->
     {% block head_js %}{% endblock %}
     {% render_block "head_js" %}
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (d, w, c) {
+            (w[c] = w[c] || []).push(function () {
+                try {
+                    w.yaCounter33087523 = new Ya.Metrika({
+                        id: 33087523,
+                        clickmap: true,
+                        trackLinks: true,
+                        accurateTrackBounce: true,
+                        webvisor: true
+                    });
+                } catch (e) {
+                }
+            });
+
+            var n = d.getElementsByTagName("script")[0],
+                    s = d.createElement("script"),
+                    f = function () {
+                        n.parentNode.insertBefore(s, n);
+                    };
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else {
+                f();
+            }
+        })(document, window, "yandex_metrika_callbacks");
+    </script>
+    <noscript>
+        <div><img src="https://mc.yandex.ru/watch/33087523" style="position:absolute; left:-9999px;" alt=""/></div>
+    </noscript>
+    <!-- /Yandex.Metrika counter -->
+
+
 </head>
 
 <body>
@@ -50,37 +88,38 @@
 
                         {% if request.get_full_path != '/' %}
                             <div class="jumbotron">
-                            <div>
-                                <h4 class="classic-title"><span><i class="fa fa-book"></i> {% trans 'Available books' %}</span>
-                                </h4>
-                                <nav>
-                                    <ul class="pagination">
-                                        {% for book in books_list %}
-                                            <li class="tumbtail"><a href="/reader/{{ book.slug }}"
-                                                   style="z-index: 2;color:darkcyan;">
-                                                <img alt="{{ book.title }}" title="{{ book.title }}" height="50px"
-                                                     width="45px"
-                                                     src="{{ book.cover.url }}">
-                                            </a></li>
-                                            {% empty %}
-                                            <p>{% trans 'No books yet' %}</p>
-                                        {% endfor %}
-                                    </ul>
-                                </nav>
-                            </div>
-{#                            <div>#}
-{#                                <h4 class="classic-title"><span><i#}
-{#                                        class="fa fa-book"></i> {% trans 'Index of Articles' %}</span></h4>#}
-{#                                <nav>#}
-{#                                    <ul class="pagination alphapager">#}
-{#                                        {% for url in url_children %}#}
-{#                                            <li class="">#}
-{#                                                <a href="{{ url.path }}">{{ url.char }}</a>#}
-{#                                            </li>#}
-{#                                        {% endfor %}#}
-{#                                    </ul>#}
-{#                                </nav>#}
-{#                            </div>#}
+                                <div>
+                                    <h4 class="classic-title"><span><i
+                                            class="fa fa-book"></i> {% trans 'Available books' %}</span>
+                                    </h4>
+                                    <nav>
+                                        <ul class="pagination">
+                                            {% for book in books_list %}
+                                                <li class="tumbtail"><a href="/reader/{{ book.slug }}"
+                                                                        style="z-index: 2;color:darkcyan;">
+                                                    <img alt="{{ book.title }}" title="{{ book.title }}" height="50px"
+                                                         width="45px"
+                                                         src="{{ book.cover.url }}">
+                                                </a></li>
+                                                {% empty %}
+                                                <p>{% trans 'No books yet' %}</p>
+                                            {% endfor %}
+                                        </ul>
+                                    </nav>
+                                </div>
+                                {#                            <div>#}
+                                {#                                <h4 class="classic-title"><span><i#}
+                                {#                                        class="fa fa-book"></i> {% trans 'Index of Articles' %}</span></h4>#}
+                                {#                                <nav>#}
+                                {#                                    <ul class="pagination alphapager">#}
+                                {#                                        {% for url in url_children %}#}
+                                {#                                            <li class="">#}
+                                {#                                                <a href="{{ url.path }}">{{ url.char }}</a>#}
+                                {#                                            </li>#}
+                                {#                                        {% endfor %}#}
+                                {#                                    </ul>#}
+                                {#                                </nav>#}
+                                {#                            </div>#}
                             </div>
                             {#                        <img style="position: absolute; bottom: 35px; left:0; z-index: 1" src="{% static 'images/sidebar_background.png' %}">#}           {% endif %}
                         <ul class="nav hidden-xs" id="sidebar-footer">
@@ -111,8 +150,8 @@
                             {#                            {% endif %}#}
 
                             <li>
-                                <form class="col-md-4" id="wiki-search-form" method="GET"
-                                      action="{% url 'wiki:search' %}">
+                                <form class="col-md-5" id="wiki-search-form" method="GET"
+                                      action="{% url 'wiki:search' %}" style="width:75%">
                                     <div class="input-group">
                                         <input type="search" class="form-control search-query" name="q"
                                                placeholder="{% trans "Search..." %}"/>
