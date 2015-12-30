@@ -14,7 +14,10 @@ from .common import *  # noqa
 # ------------------------------------------------------------------------------
 # Hosts/domain names that are valid for this site
 # See https://docs.djangoproject.com/en/1.6/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['*']
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_HTTPONLY = True
 # END SITE CONFIGURATION
 
 # EMAIL
@@ -33,12 +36,23 @@ SERVER_EMAIL = EMAIL_HOST_USER
 # DATABASE CONFIGURATION
 # ------------------------------------------------------------------------------
 # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
-DATABASES['default'] = env.db("DATABASE_URL")
+DATABASES['default'] = env.db("DATABASE_URL", default="mysql://root@localhost/wiki_allatra_club_db")
 
 # CACHING
-# ------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------
 CACHES = {
-    'default': env("DJANGO_CACHE_URL", default="memcache://127.0.0.1:11211")
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': '/var/tmp/django_cache',
+    }
 }
 
+# TEMPLATE CONFIGURATION
+# ------------------------------------------------------------------------------
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#templates
+TEMPLATES[0]['OPTIONS']['loaders'] = [
+            ('django.template.loaders.cached.Loader', [
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
+            ])]
 

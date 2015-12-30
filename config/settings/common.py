@@ -87,6 +87,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 # ------------------------------------------------------------------------------
 MIDDLEWARE_CLASSES = (
     # Make sure djangosecure.middleware.SecurityMiddleware is listed first
+    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -180,8 +181,6 @@ TEMPLATES = [
             str(APPS_DIR.path('templates')),
         ],
         'OPTIONS': {
-            # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-debug
-            'debug': DEBUG,
             # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-loaders
             # https://docs.djangoproject.com/en/dev/ref/templates/api/#loader-types
             'loaders': [
@@ -193,8 +192,8 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-                'allauth.account.context_processors.account',
-                'allauth.socialaccount.context_processors.socialaccount',
+                # 'allauth.account.context_processors.account',
+                # 'allauth.socialaccount.context_processors.socialaccount',
                 'django.template.context_processors.i18n',
                 'django.template.context_processors.media',
                 'django.template.context_processors.static',
@@ -331,14 +330,10 @@ REVISIONS_PER_MINUTES_ANONYMOUS = 5
 REVISIONS_MINUTES_LOOKBACK = 5
 
 # CACHING
-# ------------------------------------------------------------------------------
-try:
-    # Only do this here because thanks to django-pylibmc-sasl and pylibmc
-    # memcacheify is painful to install on windows.
-    # See: https://github.com/rdegges/django-heroku-memcacheify
-    from memcacheify import memcacheify
-    CACHES = memcacheify()
-except ImportError:
-    CACHES = {
-        'default': env("DJANGO_CACHE_URL", default="memcache://127.0.0.1:11211"),
+# ---------------------------------------------------------------------------
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': ''
     }
+}
