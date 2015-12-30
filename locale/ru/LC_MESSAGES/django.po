@@ -407,8 +407,6 @@ msgid "AllatRa Encyclopedia"
 msgstr "АллатРа Энциклопедия"
 
 #: wiki_allatra_club/templates/base.html:46
-#, fuzzy
-#| msgid "Available books"
 msgid "Available books"
 msgstr "Доступные книги"
 
