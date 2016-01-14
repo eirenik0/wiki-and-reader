@@ -50,3 +50,5 @@ epubsearcher
 djangorestframework
 django-filter
 
+# For make captcha
+django-recaptcha==1.0.5

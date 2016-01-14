@@ -48,6 +48,7 @@ DJANGO_APPS = (
     'django.contrib.admin',
 )
 THIRD_PARTY_APPS = (
+    'floppyforms',  # Form classes
     'crispy_forms',  # Form layouts
     'allauth',  # registration
     'allauth.account',  # registration
@@ -71,6 +72,7 @@ THIRD_PARTY_APPS = (
     'kombu.transport.django',   # django-wiki
     'rest_framework',   # reader
     'robots',
+    'captcha',
 )
 
 # Apps specific for this project go here.
@@ -78,6 +80,7 @@ LOCAL_APPS = (
     'wiki_allatra_club.users',  # custom users app
     'wiki_allatra_club.reader',   # serve epub.js
     'wiki_allatra_club.api',  # communicate with epub.js
+    'wiki_allatra_club.pages',  # all addition pages
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -337,3 +340,9 @@ CACHES = {
         'LOCATION': ''
     }
 }
+
+
+# RECAPTCHsA
+RECAPTCHA_PUBLIC_KEY = "6LfJUhUTAAAAAKGxkiA4ig4s4_M1Wb8bpSteVp_c"
+RECAPTCHA_PRIVATE_KEY = "6LfJUhUTAAAAALtcBSNV9o3If77Y9TrekdttaCbN"
+# END RECAPTCHA

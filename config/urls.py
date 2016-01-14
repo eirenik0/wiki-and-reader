@@ -19,6 +19,9 @@ urlpatterns = [
 
     url(r'^api/', include('wiki_allatra_club.api.urls', namespace='api')),
 
+    # Add pages app
+    url(r'', include('wiki_allatra_club.pages.urls', namespace="pages")),
+
     # Django Admin
     url(r'^admin/', include(admin.site.urls)),
 
@@ -32,8 +35,7 @@ urlpatterns = [
     url(r'^notifications/', get_nyt_pattern()),
     url(r'^', get_wiki_pattern()),
 
-
-
+    # Control robots.txt in domain root
     url(r'^robots\.txt$', include('robots.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

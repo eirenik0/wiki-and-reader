@@ -5725,11 +5725,11 @@ ul.footer-nav li a:hover {
 }
 
 #sidebar, #sidebar a {
-    display: inline-block;
+    /*display: inline-block;*/
     color:grey;
     /*background-color:transparent;*/
     /*text-shadow:1px 0 1px #888888;*/
-    background-color: whitesmoke;
+    /*background-color: whitesmoke;*/
 
 }
 /*#sidebar a.logo {*/
@@ -5821,4 +5821,20 @@ small.text-muted {
 
 #article-container {
     margin-top: 0;
+}
+
+/* Show navugation menu in breadcrumb position */
+#breadcrumbs-navigaion-menu {
+    display: inline-block;
+    background-color: antiquewhite;
+    box-shadow: antiquewhite;
+}
+#breadcrumbs-navigaion-menu > ul {
+    display: inline-block;
+    border-radius: 10px;
+}
+
+#article-breadcrumbs {
+    display: inline-block;
+    float: right;
 }

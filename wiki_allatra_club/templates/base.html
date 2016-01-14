@@ -85,9 +85,14 @@
                             </a>
                         </div>
                         <hr>
-
+                            <div id="breadcrumbs-navigaion-menu" class="btn-group btn-group-justified" role="group" aria-label="...">
+                                <a class="btn btn-default" role="button" href="{% url 'wiki:root' %}">{% trans 'Main' %}</a>
+                                <a class="btn btn-default" role="button" href="{% url 'pages:chronology' %}">{% trans 'Chronology' %}</a>
+                                <a class="btn btn-default" role="button" href="{% url 'pages:contact_us' %}">{% trans 'Contact us' %}</a>
+                            </div>
+                            <hr>
                         {% if request.get_full_path != '/' %}
-                            <div class="jumbotron">
+                            <div class="">
                                 <div>
                                     <h4 class="classic-title"><span><i
                                             class="fa fa-book"></i> {% trans 'Available books' %}</span>
@@ -107,48 +112,9 @@
                                         </ul>
                                     </nav>
                                 </div>
-                                {#                            <div>#}
-                                {#                                <h4 class="classic-title"><span><i#}
-                                {#                                        class="fa fa-book"></i> {% trans 'Index of Articles' %}</span></h4>#}
-                                {#                                <nav>#}
-                                {#                                    <ul class="pagination alphapager">#}
-                                {#                                        {% for url in url_children %}#}
-                                {#                                            <li class="">#}
-                                {#                                                <a href="{{ url.path }}">{{ url.char }}</a>#}
-                                {#                                            </li>#}
-                                {#                                        {% endfor %}#}
-                                {#                                    </ul>#}
-                                {#                                </nav>#}
-                                {#                            </div>#}
                             </div>
-                            {#                        <img style="position: absolute; bottom: 35px; left:0; z-index: 1" src="{% static 'images/sidebar_background.png' %}">#}           {% endif %}
+                        {% endif %}
                         <ul class="nav hidden-xs" id="sidebar-footer">
-                            {#                            {% if user.is_authenticated %}#}
-                            {#                                <li class="dropup">#}
-                            {#                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">#}
-                            {#                                        <span class="badge notification-cnt">0</span>#}
-                            {#                                        {{ user }}#}
-                            {#                                        <b class="caret"></b>#}
-                            {#                                    </a>#}
-                            {#                                    <ul class="dropdown-menu">#}
-                            {#                                        <li>#}
-                            {#                                            <a href="{% url 'wiki:logout' %}">#}
-                            {#                                                <i class="fa fa-power-off"></i>#}
-                            {#                                                {% trans "Log out" %}#}
-                            {#                                            </a>#}
-                            {#                                        </li>#}
-                            {#                                        {% include "wiki/plugins/notifications/menubaritem.html" %}#}
-                            {#                                    </ul>#}
-                            {#                                </li>#}
-                            {#                            {% else %}#}
-                            {#                                <li>#}
-                            {#                                    <a href="{% url 'account_login' %}">{% trans "Log in" %}</a>#}
-                            {#                                </li>#}
-                            {#                                <li>#}
-                            {#                                    <a href="{% url 'account_signup' %}">{% trans "Sign up" %}</a>#}
-                            {#                                </li>#}
-                            {#                            {% endif %}#}
-
                             <li>
                                 <form class="col-md-5" id="wiki-search-form" method="GET"
                                       action="{% url 'wiki:search' %}" style="width:75%">
@@ -272,6 +238,8 @@
                                     </div>
                                 {% endfor %}
                             {% endif %}
+
+
 
                             <!-- Reserved for breadcrumbs -->
                             {% block wiki_breadcrumbs %}{% endblock %}

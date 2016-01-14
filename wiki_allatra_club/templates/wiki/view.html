@@ -6,35 +6,6 @@
     <div>
         {% wiki_render article %}
     </div>
-    {#    {% if request.get_full_path == '/' %}#}
-    {#        <div class="row">#}
-    {#            <div class="col-lg-12">#}
-    {#                <h1 class="page-header">{% trans 'Available books' %}</h1>#}
-    {#            </div>#}
-    {#        </div>#}
-    {#        {% for books in books_chunked_list %}#}
-    {#            <div class="row">#}
-    {#                {% for book in books %}#}
-    {#                    <div class="col-lg-3 col-md-4 col-xs-6 thumb">#}
-    {#                        <a class="thumbnail" href="/reader/{{ book.pk }}">#}
-    {#                            <img class="img-responsive" height="150px" width="226px" src="{{ book.cover.url }}" alt="">#}
-    {##}
-    {#                            <h4 class="text-center">{{ book.title }}</h4>#}
-    {#                        </a>#}
-    {#                    </div>#}
-    {#                {% endfor %}#}
-    {#            </div>#}
-    {#            {% empty %}#}
-    {#            <div class="row">#}
-    {#                <div class="col-lg-3 col-sm-6 col-xs-12">#}
-    {#                    <div class="items">#}
-    {#                        <i><h3>{% trans 'No books yet' %}</h3></i>#}
-    {#                    </div>#}
-    {#                </div>#}
-    {#            </div>#}
-    {#        {% endfor %}#}
-    {#    {% endif %}#}
-
     {% if request.get_full_path == '/' %}
         <br>
         <div>
@@ -77,97 +48,6 @@
             </div>
         </div>
         <br>
-
-{#        <div class="flipster">#}
-{#            <h4 class="classic-title"><span><i class="fa fa-book"></i> {% trans 'Available books' %}</span></h4>#}
-{##}
-{#            <ul style="width: 400px;">#}
-{#                {% for book in books_list %}#}
-{#                    <li>#}
-{#                        <a href="/reader/{{ book.slug }}">#}
-{#                            <img alt="{{ book.title }}" title="{{ book.title }}" height="50px" width="50px"#}
-{#                                 class="" src="{{ book.cover.url }}">#}
-{#                        </a>#}
-{#                        <p>{{ book.description }}</p>#}
-{##}
-{#                    </li>#}
-{#                    {% empty %}#}
-{#                    <p>{% trans 'No books yet' %}</p>#}
-{#                {% endfor %}#}
-{#            </ul>#}
-{#        </div>#}
-        {#        <div class="our-clients">#}
-        {##}
-        {#            <!-- Classic Heading -->#}
-        {#            <h4 class="classic-title"><span>{% trans "Partners site" %}</span></h4>#}
-        {##}
-        {#            <div class="clients-carousel custom-carousel touch-carousel owl-carousel owl-theme" data-appeared-items="5"#}
-        {#                 style="opacity: 1; display: block;">#}
-        {##}
-        {#                <div class="owl-wrapper-outer">#}
-        {#                    <div class="owl-wrapper"#}
-        {#                         style="width: 3648px; left: 0px; display: block; transition: all 800ms ease; transform: translate3d(-456px, 0px, 0px);">#}
-        {#                        <div class="owl-item" style="width: 228px;">#}
-        {#                            <div class="client-item item">#}
-        {#                                <a href="http://allatra.org/ru" target="_blank"><img#}
-        {#                                        src="{% static 'images/our_partners/mod-logo.png' %}" alt=""></a>#}
-        {#                            </div>#}
-        {#                        </div>#}
-        {#                        <div class="owl-item" style="width: 228px;">#}
-        {#                            <div class="client-item item">#}
-        {#                                <a href="http://allatra-science.org/" target="_blank"><img#}
-        {#                                        src="{% static 'images/our_partners/science-logo.png' %}" alt=""></a>#}
-        {#                            </div>#}
-        {#                        </div>#}
-        {#                        <div class="owl-item" style="width: 228px;">#}
-        {#                            <div class="client-item item">#}
-        {#                                <a href="http://allatra-partner.org/ru" target="_blank"><img#}
-        {#                                        src="{% static 'images/our_partners/partner-logo.png' %}" alt=""></a>#}
-        {#                            </div>#}
-        {#                        </div>#}
-        {#                        <div class="owl-item" style="width: 228px;">#}
-        {#                            <div class="client-item item">#}
-        {#                                <a href="http://allatra.in" target="_blank"><img#}
-        {#                                        src="{% static 'images/our_partners/kf-logo.png' %}" alt=""></a>#}
-        {#                            </div>#}
-        {#                        </div>#}
-        {#                        <div class="owl-item" style="width: 228px;">#}
-        {#                            <div class="client-item item">#}
-        {#                                <a href="http://allatra.tv" target="_blank"><img#}
-        {#                                        src="{% static 'images/our_partners/tv-logo.png' %}" alt=""></a>#}
-        {#                            </div>#}
-        {#                        </div>#}
-        {#                        <div class="owl-item" style="width: 228px;">#}
-        {#                            <div class="client-item item">#}
-        {#                                <a href="http://allatravesti.com" target="_blank"><img#}
-        {#                                        src="{% static 'images/our_partners/vesti-logo.png' %}" alt=""></a>#}
-        {#                            </div>#}
-        {#                        </div>#}
-        {#                        <div class="owl-item" style="width: 228px;">#}
-        {#                            <div class="client-item item">#}
-        {#                                <a href="http://sensei.org.ua" target="_blank"><img#}
-        {#                                        src="{% static 'images/our_partners/sensei-logo.png' %}" alt=""></a>#}
-        {#                            </div>#}
-        {#                        </div>#}
-        {#                        <div class="owl-item" style="width: 228px;">#}
-        {#                            <div class="client-item item">#}
-        {#                                <a href="http://allatra-radio.com" target="_blank"><img#}
-        {#                                        src="{% static 'images/our_partners/radio-logo.jpg' %}" alt=""></a>#}
-        {#                            </div>#}
-        {#                        </div>#}
-        {#                    </div>#}
-        {#                </div>#}
-        {##}
-        {##}
-        {#                <div class="owl-controls clickable">#}
-        {#                    <div class="owl-pagination">#}
-        {#                        <div class="owl-page active"><span class=""></span></div>#}
-        {#                        <div class="owl-page"><span class=""></span></div>#}
-        {#                    </div>#}
-        {#                </div>#}
-        {#            </div>#}
-        {#        </div>#}
-
         {% block js %}
             {% addtoblock "js" %}
                 <script type="text/javascript" src="{% static 'js/libs/owl.carousel.js' %}"></script>

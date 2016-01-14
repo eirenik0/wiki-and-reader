@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-06 11:06+0300\n"
+"POT-Creation-Date: 2016-01-14 20:46+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: config/settings/common.py:145
+#: config/settings/common.py:156
 msgid "Russian"
 msgstr "Русский"
 
@@ -72,19 +72,19 @@ msgstr "файл с книгой"
 msgid "cover"
 msgstr "обложка"
 
-#: wiki_allatra_club/reader/models.py:65
+#: wiki_allatra_club/reader/models.py:66
 msgid "book"
 msgstr "книга"
 
-#: wiki_allatra_club/reader/models.py:66
+#: wiki_allatra_club/reader/models.py:67
 msgid "books"
 msgstr "книги"
 
-#: wiki_allatra_club/reader/models.py:90
+#: wiki_allatra_club/reader/models.py:91
 msgid "chapter"
 msgstr "глава"
 
-#: wiki_allatra_club/reader/models.py:91
+#: wiki_allatra_club/reader/models.py:92
 msgid "chapters"
 msgstr "главы"
 
@@ -193,7 +193,7 @@ msgstr "Войти"
 msgid ""
 "Please sign in with one\n"
 "      of your existing third party accounts. Or, <a href=\"%(signup_url)s"
-"\">sign up</a> \n"
+"\">sign up</a>\n"
 "      for a %(site_name)s account and sign in below:"
 msgstr ""
 
@@ -406,98 +406,95 @@ msgstr "Удалить"
 msgid "AllatRa Encyclopedia"
 msgstr "АллатРа Энциклопедия"
 
-#: wiki_allatra_club/templates/base.html:46
+#: wiki_allatra_club/templates/base.html:89
+msgid "Main"
+msgstr "Главная"
+
+#: wiki_allatra_club/templates/base.html:90
+#: wiki_allatra_club/templates/pages/chronology_view.html:4
+msgid "Chronology"
+msgstr "Хронология"
+
+#: wiki_allatra_club/templates/base.html:91
+#: wiki_allatra_club/templates/pages/contact_us.html:8
+msgid "Contact us"
+msgstr "Контакты"
+
+#: wiki_allatra_club/templates/base.html:98
+#: wiki_allatra_club/templates/wiki/view.html:12
 msgid "Available books"
 msgstr "Доступные книги"
 
-#: wiki_allatra_club/templates/base.html:60
+#: wiki_allatra_club/templates/base.html:110
+#: wiki_allatra_club/templates/wiki/view.html:22
 msgid "No books yet"
 msgstr "Ни одной книги не добавлено"
 
-#: wiki_allatra_club/templates/base.html:77
-#: wiki_allatra_club/templates/index.html:298
-msgid "Log out"
-msgstr "Выход"
-
-#: wiki_allatra_club/templates/base.html:98
-#: wiki_allatra_club/templates/index.html:276
+#: wiki_allatra_club/templates/base.html:123
 msgid "Search..."
 msgstr "Поиск..."
 
-#: wiki_allatra_club/templates/index.html:266
-msgid "AllatRa"
-msgstr "АллатРа"
+#: wiki_allatra_club/templates/base.html:146
+msgid "Log out"
+msgstr "Выход"
 
-#: wiki_allatra_club/templates/index.html:266
-msgid "Encyclopedia"
-msgstr "Энциклопедия"
-
-#: wiki_allatra_club/templates/index.html:308
+#: wiki_allatra_club/templates/base.html:157
 msgid "Log in"
 msgstr "Вход"
 
-#: wiki_allatra_club/templates/index.html:311
-msgid "Sign up"
-msgstr "Регистрация"
-
-#: wiki_allatra_club/templates/index.html:318
-msgid "Wiki"
-msgstr "Вики"
-
-#: wiki_allatra_club/templates/index.html:321
-msgid "Select book"
-msgstr "Выберите книгу"
-
-#: wiki_allatra_club/templates/index.html:386
-msgid ""
-"Powered by <a href=\"http://www.django-wiki.org\">django-wiki</a> and\n"
-"                <a href=\"https://github.com/futurepress/epub.js\"> epub.js</"
-"a>"
-msgstr ""
-
-#: wiki_allatra_club/templates/pages/reader.html:69
-msgid "Back to main Wiki page"
-msgstr "Вернуться на главную страницу Энциклопедии"
-
-#: wiki_allatra_club/templates/pages/reader.html:77
+#: wiki_allatra_club/templates/pages/reader.html:70
 msgid "Search"
 msgstr "Поиск"
 
-#: wiki_allatra_club/templates/pages/reader.html:78
+#: wiki_allatra_club/templates/pages/reader.html:71
 msgid "TOC"
 msgstr "Содержание"
 
-#: wiki_allatra_club/templates/pages/reader.html:79
+#: wiki_allatra_club/templates/pages/reader.html:72
 msgid "Bookmarks"
 msgstr "Закладки"
 
-#: wiki_allatra_club/templates/pages/reader.html:80
+#: wiki_allatra_club/templates/pages/reader.html:73
 msgid "Notes"
 msgstr "Заметка"
 
-#: wiki_allatra_club/templates/pages/reader.html:84
+#: wiki_allatra_club/templates/pages/reader.html:77
 msgid "Contents"
 msgstr "Содержание"
 
-#: wiki_allatra_club/templates/pages/reader.html:95
+#: wiki_allatra_club/templates/pages/reader.html:88
 msgid "Anchor"
 msgstr "Якорь"
 
-#: wiki_allatra_club/templates/pages/reader.html:103
+#: wiki_allatra_club/templates/pages/reader.html:96
+msgid "Home"
+msgstr "Домой"
+
+#: wiki_allatra_club/templates/pages/reader.html:97
 msgid "Menu"
 msgstr "Меню"
 
-#: wiki_allatra_club/templates/pages/reader.html:111
+#: wiki_allatra_club/templates/pages/reader.html:105
 msgid "Bookmark"
 msgstr "Закладка"
 
-#: wiki_allatra_club/templates/pages/reader.html:113
+#: wiki_allatra_club/templates/pages/reader.html:107
 msgid "Fullscreen"
 msgstr "Полноэкранный"
 
-#: wiki_allatra_club/templates/pages/reader.html:131
+#: wiki_allatra_club/templates/pages/reader.html:125
 msgid "Reflow text when sidebars are open."
 msgstr "Перерисовывать текст когда боковая панель открыта."
+
+#: wiki_allatra_club/templates/pages/thanks.html:7
+#, fuzzy
+#| msgid "Thanks"
+msgid "Thank you"
+msgstr "Спасибо"
+
+#: wiki_allatra_club/templates/pages/thanks.html:11
+msgid "Thank you for contacting"
+msgstr "Спасибо за сообщение"
 
 #: wiki_allatra_club/templates/wiki/article.html:23
 msgid "locked"
@@ -507,26 +504,65 @@ msgstr ""
 msgid "This article was last modified:"
 msgstr "Статья была редактирована:"
 
-#: wiki_allatra_club/templates/wiki/view.html:41
+#: wiki_allatra_club/templates/wiki/includes/breadcrumbs.html:7
+#: wiki_allatra_club/templates/wiki/includes/breadcrumbs.html:33
+msgid "Sub-articles for"
+msgstr ""
+
+#: wiki_allatra_club/templates/wiki/includes/breadcrumbs.html:19
+msgid "No sub-articles"
+msgstr ""
+
+#: wiki_allatra_club/templates/wiki/includes/breadcrumbs.html:22
+msgid "...and more"
+msgstr "... и боолее"
+
+#: wiki_allatra_club/templates/wiki/includes/breadcrumbs.html:26
+msgid "Browse articles in this level"
+msgstr "Просмотр статей этого уровня"
+
+#: wiki_allatra_club/templates/wiki/includes/breadcrumbs.html:42
+msgid "New article next to"
+msgstr "Новая статья следом"
+
+#: wiki_allatra_club/templates/wiki/includes/breadcrumbs.html:47
+msgid "New article below"
+msgstr "Новая статья под"
+
+#: wiki_allatra_club/templates/wiki/view.html:28
 msgid "Index of Articles"
 msgstr "Алфавитный указатель статей"
 
-#: wiki_allatra_club/templates/wiki/view.html:53
+#: wiki_allatra_club/templates/wiki/view.html:41
 msgid "Tags"
 msgstr "Теги"
 
-#: wiki_allatra_club/templates/wiki/view.html:66
-msgid "Partners site"
-msgstr "Сайты — партнеры"
+#~ msgid "AllatRa"
+#~ msgstr "АллатРа"
+
+#~ msgid "Encyclopedia"
+#~ msgstr "Энциклопедия"
+
+#~ msgid "Sign up"
+#~ msgstr "Регистрация"
+
+#~ msgid "Wiki"
+#~ msgstr "Вики"
+
+#~ msgid "Select book"
+#~ msgstr "Выберите книгу"
+
+#~ msgid "Back to main Wiki page"
+#~ msgstr "Вернуться на главную страницу Энциклопедии"
+
+#~ msgid "Partners site"
+#~ msgstr "Сайты — партнеры"
 
 #~ msgid "Select book for reading"
 #~ msgstr "Выберите книгу для чтения"
 
 #~ msgid "English"
 #~ msgstr "Английский"
-
-#~ msgid "Home"
-#~ msgstr "Домой"
 
 #~ msgid "About app"
 #~ msgstr "Про приложение"
@@ -559,6 +595,3 @@ msgstr "Сайты — партнеры"
 
 #~ msgid "Lets see how it's work"
 #~ msgstr "Посмотрите как это работает"
-
-#~ msgid "Thanks"
-#~ msgstr "Спасибо"
