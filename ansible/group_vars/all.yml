@@ -7,7 +7,7 @@ swap_file_size_kb: 512
 update_apt_cache: no
 
 user_name: wiki_club_user
-user_pass: "ssfhs!235!d"
+user_pass: "pass"
 user_groups: www-data
 
 home_path: "/home/{{ user_name }}"
@@ -23,7 +23,7 @@ git_source: https://Infernion@bitbucket.org/Infernion/wiki_allatra_club.git
 
 db_name: "{{ project_name }}_db"
 db_user: "{{ user_name }}"
-db_password: "vTbBV3WWEBbpS8NK"
+db_password: "pass"
 
 
 # Application settings.
@@ -50,7 +50,7 @@ nginx_static_dir: "{{ project_path }}/staticfiles/"
 nginx_media_dir: "{{ project_path }}/{{ application_name }}/media/"
 
 # Django Environment variables
-django_secret_key: kjgiky68723gh6yugv3bvJHFVyuk3iGKJGOU&T%
+django_secret_key: "key"
 django_settings_file: "{{ project_path }}/config/settings/local.py"
 
 django_environment:
